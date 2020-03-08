@@ -1,12 +1,59 @@
 #include <iostream>
+#include <string>
 #include <pqxx/pqxx>
 
-#include "exerciser.h"
+//#include "exerciser.h"
 
 using namespace std;
 using namespace pqxx;
 
-int main (int argc, char *argv[]) 
+std::string CreatePlayer() {
+    std::string ans = "CREATE TABLE PLAYER (​" \
+                      "PLAYER_ID   INT         NOT NULL," \
+                      "TEAM_ID     INT         NOT NULL," \
+                      "UNIFORM_NUM INT         NOT NULL," \
+                      "FIRST_NAME  VARCHAR(20) NOT NULL," \
+                      "LAST_NAME   VARCHAR(20) NOT NULL," \
+                      "MPG         INT," \
+                      "PPG         INT," \
+                      "RPG         INT," \
+                      "APG         INT," \
+                      "SPG         DOUBLE," \
+                      "BPG         DOUBLE," \
+                      "PRIMARY KEY (PLAYER_ID));";
+    return ans;
+}
+
+std::string CreateTeam() {
+    std::string ans = "CREATE TABLE TEAM (​" \
+                      "TEAM_ID   INT          NOT NULL," \
+                      "NAME      VARCHAR(128) NOT NULL," \
+                      "STATE_ID  INT          NOT NULL," \
+                      "COLOR_ID  INT          NOT NULL," \
+                      "WINS      INT          NOT NULL," \
+                      "LOSSES    INT          NOT NULL," \
+                      "PRIMARY KEY (TEAM_ID));";
+    return ans;
+}
+
+std::string CreateState() {
+    std::string ans = "CREATE TABLE STATE (​" \
+                      "STATE_ID  INT          NOT NULL," \
+                      "NAME      VARCHAR(2)   NOT NULL," \
+                      "PRIMARY KEY (STATE_ID));";
+    return ans;
+}
+
+std::string CreateColor() {
+    std::string ans = "CREATE TABLE COLOR (" \
+                      "COLOR_ID  INT          NOT NULL," \
+                      "NAME      VARCHAR(20)  NOT NULL," \
+                      "PRIMARY KEY (COLOR_ID));"
+    return ans;
+    
+}
+
+int main (int argc, char *argv[])
 {
 
   //Allocate & initialize a Postgres connection object
@@ -15,10 +62,13 @@ int main (int argc, char *argv[])
   try{
     //Establish a connection to the database
     //Parameters: database name, user name, user password
-    C = new connection("dbname=ACC_BBALL user=postgres password=passw0rd");
+    C = new connection("dbname=ACC_BBALL user=postgres password=abc123");
     if (C->is_open()) {
       cout << "Opened database successfully: " << C->dbname() << endl;
-        work W = new work(C);
+        work W(C);
+        std::string sql = CreatePlayer();
+        W.exec(sql);
+        W.commit();
     } else {
       cout << "Can't open database" << endl;
       return 1;
