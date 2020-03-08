@@ -20,7 +20,7 @@ string CreatePlayer() {
                       "APG         INT," \
                       "SPG         DOUBLE PRECISION," \
                       "BPG         DOUBLE PRECISION," \
-                      "PRIMARY KEY (PLAYER_ID));";
+                      "PRIMARY KEY (\"PLAYER_ID\"));";
     return ans;
 }
 
