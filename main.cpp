@@ -66,7 +66,7 @@ int main (int argc, char *argv[])
     if (C->is_open()) {
       cout << "Opened database successfully: " << C->dbname() << endl;
         work W(*C);
-        string sql = CreatePlayer();
+        string sql = CreateTeam();
         W.exec(sql);
         W.commit();
         //Close database connection
