@@ -44,7 +44,7 @@ string CreateState() {
 string CreateColor() {
     std::string ans = "CREATE TABLE COLOR (" \
                       "COLOR_ID INT PRIMARY KEY NOT NULL," \
-                      "NAME      VARCHAR(20)  NOT NULL,";
+                      "NAME      VARCHAR(20)  NOT NULL);";
     return ans;
     
 }
