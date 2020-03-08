@@ -7,7 +7,7 @@
 using namespace std;
 using namespace pqxx;
 
-std::string CreatePlayer() {
+string CreatePlayer() {
     std::string ans = "CREATE TABLE PLAYER (​" \
                       "PLAYER_ID   INT         NOT NULL," \
                       "TEAM_ID     INT         NOT NULL," \
@@ -24,7 +24,7 @@ std::string CreatePlayer() {
     return ans;
 }
 
-std::string CreateTeam() {
+string CreateTeam() {
     std::string ans = "CREATE TABLE TEAM (​" \
                       "TEAM_ID   INT          NOT NULL," \
                       "NAME      VARCHAR(128) NOT NULL," \
@@ -36,7 +36,7 @@ std::string CreateTeam() {
     return ans;
 }
 
-std::string CreateState() {
+string CreateState() {
     std::string ans = "CREATE TABLE STATE (​" \
                       "STATE_ID  INT          NOT NULL," \
                       "NAME      VARCHAR(2)   NOT NULL," \
@@ -44,11 +44,11 @@ std::string CreateState() {
     return ans;
 }
 
-std::string CreateColor() {
+string CreateColor() {
     std::string ans = "CREATE TABLE COLOR (" \
                       "COLOR_ID  INT          NOT NULL," \
                       "NAME      VARCHAR(20)  NOT NULL," \
-                      "PRIMARY KEY (COLOR_ID));"
+                      "PRIMARY KEY (COLOR_ID));";
     return ans;
     
 }
@@ -62,11 +62,11 @@ int main (int argc, char *argv[])
   try{
     //Establish a connection to the database
     //Parameters: database name, user name, user password
-    C = new connection("dbname=ACC_BBALL user=postgres password=abc123");
+    C = new connection("dbname=ACC_BBALL user=postgres password=abc123 hostaddr = 127.0.0.1 port = 5432");
     if (C->is_open()) {
       cout << "Opened database successfully: " << C->dbname() << endl;
         work W(C);
-        std::string sql = CreatePlayer();
+        string sql = CreatePlayer();
         W.exec(sql);
         W.commit();
     } else {
