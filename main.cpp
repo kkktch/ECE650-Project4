@@ -67,13 +67,13 @@ int main (int argc, char *argv[])
         W.commit();
         sql = CreateTeam();
         W.exec(sql);
-        W.commit;
+        W.commit();
         sql = CreateColor();
         W.exec(sql);
-        W.commit;
+        W.commit();
         sql = CreateState();
         W.exec(sql);
-        W.commit;
+        W.commit();
         //Close database connection
         C->disconnect();
     } else {
