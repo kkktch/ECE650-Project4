@@ -20,7 +20,7 @@ string CreatePlayer() {
                       "APG         INT," \
                       "SPG         DOUBLE PRECISION," \
                       "BPG         DOUBLE PRECISION," \
-                      "PRIMARY KEY (\"PLAYER_ID\"));";
+                      "PRIMARY KEY (PLAYER_ID));";
     return ans;
 }
 
@@ -32,7 +32,7 @@ string CreateTeam() {
                       "COLOR_ID  INT          NOT NULL," \
                       "WINS      INT          NOT NULL," \
                       "LOSSES    INT          NOT NULL," \
-                      "PRIMARY KEY (TEAM_ID));";
+                      "PRIMARY KEY (\"TEAM_ID\"));";
     return ans;
 }
 
