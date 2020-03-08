@@ -62,7 +62,7 @@ int main (int argc, char *argv[])
     //Parameters: database name, user name, user password
 
       //Allocate & initialize a Postgres connection object
-    connection *C = new connection("dbname=ACC_BBALL user=postgres password=abc123 hostaddr = 127.0.0.1 port = 5432");
+    connection *C = new connection("dbname=acc_bball user=postgres password=abc123 hostaddr = 127.0.0.1 port = 5432");
     if (C->is_open()) {
       cout << "Opened database successfully: " << C->dbname() << endl;
         work W(*C);
