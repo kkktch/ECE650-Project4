@@ -18,8 +18,8 @@ string CreatePlayer() {
                       "PPG         INT," \
                       "RPG         INT," \
                       "APG         INT," \
-                      "SPG         DOUBLE," \
-                      "BPG         DOUBLE," \
+                      "SPG         DOUBLE PRECISION," \
+                      "BPG         DOUBLE PRECISION," \
                       "PRIMARY KEY (PLAYER_ID));";
     return ans;
 }
