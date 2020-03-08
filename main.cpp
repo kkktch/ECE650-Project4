@@ -64,13 +64,10 @@ int main (int argc, char *argv[])
         work W(*C);
         string sql = CreatePlayer();
         W.exec(sql);
-        W.commit();
         sql = CreateTeam();
         W.exec(sql);
-        W.commit();
         sql = CreateColor();
         W.exec(sql);
-        W.commit();
         sql = CreateState();
         W.exec(sql);
         W.commit();
