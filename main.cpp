@@ -56,19 +56,21 @@ string CreateColor() {
 int main (int argc, char *argv[])
 {
 
-  //Allocate & initialize a Postgres connection object
-  connection *C;
 
   try{
     //Establish a connection to the database
     //Parameters: database name, user name, user password
-    C = new connection("dbname=ACC_BBALL user=postgres password=abc123 hostaddr = 127.0.0.1 port = 5432");
+
+      //Allocate & initialize a Postgres connection object
+    connection *C = new connection("dbname=ACC_BBALL user=postgres password=abc123 hostaddr = 127.0.0.1 port = 5432");
     if (C->is_open()) {
       cout << "Opened database successfully: " << C->dbname() << endl;
-        work W(C);
+        work W(*C);
         string sql = CreatePlayer();
         W.exec(sql);
         W.commit();
+        //Close database connection
+        C->disconnect();
     } else {
       cout << "Can't open database" << endl;
       return 1;
@@ -83,11 +85,9 @@ int main (int argc, char *argv[])
   //      load each table with rows from the provided source txt files
 
 
-  exercise(C);
+  //exercise(C);
 
 
-  //Close database connection
-  C->disconnect();
 
   return 0;
 }
