@@ -9,18 +9,17 @@ using namespace pqxx;
 
 string CreatePlayer() {
     std::string ans = "CREATE TABLE PLAYER (​" \
-                      "PLAYER_ID   INT         NOT NULL," \
-                      "TEAM_ID     INT         NOT NULL," \
-                      "UNIFORM_NUM INT         NOT NULL," \
-                      "FIRST_NAME  VARCHAR(20) NOT NULL," \
-                      "LAST_NAME   VARCHAR(20) NOT NULL," \
+                      "PLAYER_ID INT PRIMARY KEY  NOT NULL," \
+                      "TEAM_ID     INT            NOT NULL," \
+                      "UNIFORM_NUM INT            NOT NULL," \
+                      "FIRST_NAME  VARCHAR(20)    NOT NULL," \
+                      "LAST_NAME   VARCHAR(20)    NOT NULL," \
                       "MPG         INT," \
                       "PPG         INT," \
                       "RPG         INT," \
                       "APG         INT," \
                       "SPG         DOUBLE PRECISION," \
-                      "BPG         DOUBLE PRECISION," \
-                      "PRIMARY KEY (PLAYER_ID));";
+                      "BPG         DOUBLE PRECISION);";
     return ans;
 }
 
@@ -32,7 +31,7 @@ string CreateTeam() {
                       "COLOR_ID  INT          NOT NULL," \
                       "WINS      INT          NOT NULL," \
                       "LOSSES    INT          NOT NULL," \
-                      "PRIMARY KEY (\"TEAM_ID\"));";
+                      "PRIMARY KEY (TEAM_ID));";
     return ans;
 }
 
@@ -66,7 +65,7 @@ int main (int argc, char *argv[])
     if (C->is_open()) {
       cout << "Opened database successfully: " << C->dbname() << endl;
         work W(*C);
-        string sql = CreateTeam();
+        string sql = CreatePlayer();
         W.exec(sql);
         W.commit();
         //Close database connection
