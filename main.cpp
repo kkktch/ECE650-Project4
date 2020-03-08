@@ -25,29 +25,26 @@ string CreatePlayer() {
 
 string CreateTeam() {
     std::string ans = "CREATE TABLE TEAM (​" \
-                      "TEAM_ID   INT          NOT NULL," \
+                      "TEAM_ID INT PRIMARY KEY  NOT NULL," \
                       "NAME      VARCHAR(128) NOT NULL," \
                       "STATE_ID  INT          NOT NULL," \
                       "COLOR_ID  INT          NOT NULL," \
                       "WINS      INT          NOT NULL," \
-                      "LOSSES    INT          NOT NULL," \
-                      "PRIMARY KEY (TEAM_ID));";
+                      "LOSSES    INT          NOT NULL);";
     return ans;
 }
 
 string CreateState() {
     std::string ans = "CREATE TABLE STATE (​" \
-                      "STATE_ID  INT          NOT NULL," \
-                      "NAME      VARCHAR(2)   NOT NULL," \
-                      "PRIMARY KEY (STATE_ID));";
+                      "STATE_ID INT PRIMARY KEY NOT NULL," \
+                      "NAME      VARCHAR(2)   NOT NULL);";
     return ans;
 }
 
 string CreateColor() {
     std::string ans = "CREATE TABLE COLOR (" \
-                      "COLOR_ID  INT          NOT NULL," \
-                      "NAME      VARCHAR(20)  NOT NULL," \
-                      "PRIMARY KEY (COLOR_ID));";
+                      "COLOR_ID INT PRIMARY KEY NOT NULL," \
+                      "NAME      VARCHAR(20)  NOT NULL,";
     return ans;
     
 }
@@ -68,6 +65,15 @@ int main (int argc, char *argv[])
         string sql = CreatePlayer();
         W.exec(sql);
         W.commit();
+        sql = CreateTeam();
+        W.exec(sql);
+        W.commit;
+        sql = CreateColor();
+        W.exec(sql);
+        W.commit;
+        sql = CreateState();
+        W.exec(sql);
+        W.commit;
         //Close database connection
         C->disconnect();
     } else {
