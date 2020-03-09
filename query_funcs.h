@@ -28,7 +28,7 @@ void add_color(connection *C, string name);
 // 	    int use_bpg, double min_bpg, double max_bpg
 // 	    );
 
-// void query2(connection *C, string team_color);
+void query2(connection *C, string team_color);
 
 // void query3(connection *C, string team_name);
 

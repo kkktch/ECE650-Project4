@@ -4,7 +4,7 @@
 #include <pqxx/pqxx>
 
 #include "query_funcs.h"
-//#include "exerciser.h"
+#include "exerciser.h"
 
 using namespace std;
 using namespace pqxx;
@@ -170,10 +170,6 @@ int main(int argc, char *argv[])
 {
   try
   {
-    //Establish a connection to the database
-    //Parameters: database name, user name, user password
-
-    //Allocate & initialize a Postgres connection object
     ReCreateDB();
     connection *C = new connection("dbname=ACC_BBALL user=postgres password=passw0rd hostaddr = 127.0.0.1 port = 5432");
     if (C->is_open())
@@ -201,11 +197,7 @@ int main(int argc, char *argv[])
     cerr << e.what() << std::endl;
     return 1;
   }
-
-  //TODO: create PLAYER, TEAM, STATE, and COLOR tables in the ACC_BBALL database
-  //      load each table with rows from the provided source txt files
-
-  //exercise(C);
+  exercise(C);
 
   return 0;
 }
