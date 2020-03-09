@@ -60,7 +60,7 @@ void query2(connection *C, string team_color)
 
     nontransaction NA(*C);
     result R(NA.exec(SQL.str()));
-    cout << "NAME\N";
+    cout << "NAME\n";
     for (result::const_iterator c = R.begin(); c != R.end(); ++c)
     {
         cout << c[0].as<string>() << endl;
