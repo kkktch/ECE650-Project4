@@ -11,45 +11,48 @@ using namespace pqxx;
 string CreatePlayer()
 {
   std::string ans = "CREATE TABLE PLAYER (​"
-                    "PLAYER_ID INT PRIMARY KEY  NOT NULL,"
-                    "TEAM_ID     INT            NOT NULL,"
-                    "UNIFORM_NUM INT            NOT NULL,"
-                    "FIRST_NAME  VARCHAR(20)    NOT NULL,"
-                    "LAST_NAME   VARCHAR(20)    NOT NULL,"
+                    "PLAYER_ID SERIAL PRIMARY KEY  NOT NULL,"
+                    "TEAM_ID     INT,"
+                    "UNIFORM_NUM INT,"
+                    "FIRST_NAME  VARCHAR(256),"
+                    "LAST_NAME   VARCHAR(256),"
                     "MPG         INT,"
                     "PPG         INT,"
                     "RPG         INT,"
                     "APG         INT,"
                     "SPG         DOUBLE PRECISION,"
-                    "BPG         DOUBLE PRECISION);";
+                    "BPG         DOUBLE PRECISION,"
+                    "FOREIGN KEY (TEAM_ID) REFERENCES TEAM(TEAM_ID) ON DELETE SET NULL ON UPDATE CASCADE);";
   return ans;
 }
 
 string CreateTeam()
 {
   std::string ans = "CREATE TABLE TEAM (​"
-                    "TEAM_ID INT PRIMARY KEY  NOT NULL,"
-                    "NAME      VARCHAR(128) NOT NULL,"
-                    "STATE_ID  INT          NOT NULL,"
-                    "COLOR_ID  INT          NOT NULL,"
-                    "WINS      INT          NOT NULL,"
-                    "LOSSES    INT          NOT NULL);";
+                    "TEAM_ID SERIAL PRIMARY KEY  NOT NULL,"
+                    "NAME      VARCHAR(256),"
+                    "STATE_ID  INT,"
+                    "COLOR_ID  INT,"
+                    "WINS      INT,"
+                    "LOSSES    INT,"
+                    "FOREIGN KEY (STATE_ID) REFERENCES STATE(STATE_ID) ON DELETE SET NULL ON UPDATE CASCADE,"
+                    "FOREIGN KEY (COLOR_ID) REFERENCES COLOR(COLOR_ID) ON DELETE SET NULL ON UPDATE CASCADE);";
   return ans;
 }
 
 string CreateState()
 {
   std::string ans = "CREATE TABLE STATE (​"
-                    "STATE_ID INT PRIMARY KEY NOT NULL,"
-                    "NAME      VARCHAR(2)   NOT NULL);";
+                    "STATE_ID SERIAL PRIMARY KEY NOT NULL,"
+                    "NAME      VARCHAR(256));";
   return ans;
 }
 
 string CreateColor()
 {
   std::string ans = "CREATE TABLE COLOR ("
-                    "COLOR_ID INT PRIMARY KEY NOT NULL,"
-                    "NAME      VARCHAR(20)  NOT NULL);";
+                    "COLOR_ID SERIAL PRIMARY KEY NOT NULL,"
+                    "NAME      VARCHAR(256));";
   return ans;
 }
 
@@ -95,15 +98,15 @@ int main(int argc, char *argv[])
     {
       cout << "Opened database successfully: " << C->dbname() << endl;
       work W(*C);
-      string dropCMD = "DROP TABLE IF EXISTS player, team, state, color;";
+      string dropCMD = "DROP TABLE IF EXISTS player, team, state, color CASCADE;";
       W.exec(dropCMD);
-      string sql = CreatePlayer();
-      W.exec(sql);
-      sql = CreateTeam();
+      sql = CreateState();
       W.exec(sql);
       sql = CreateColor();
       W.exec(sql);
-      sql = CreateState();
+      sql = CreateTeam();
+      W.exec(sql);
+      string sql = CreatePlayer();
       W.exec(sql);
       W.commit();
       add_player(C, 1, 1, "yyyy", "xxxx", 1, 1, 1, 1, 1, 1);
