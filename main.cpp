@@ -35,7 +35,7 @@ string CreateTeam()
                     "COLOR_ID  INT,"
                     "WINS      INT,"
                     "LOSSES    INT,"
-                    //"FOREIGN KEY (STATE_ID) REFERENCES STATE(STATE_ID) ON DELETE SET NULL ON UPDATE CASCADE,"
+                    "FOREIGN KEY (STATE_ID) REFERENCES STATE(STATE_ID) ON DELETE SET NULL ON UPDATE CASCADE,"
                     "FOREIGN KEY (COLOR_ID) REFERENCES COLOR(COLOR_ID) ON DELETE SET NULL ON UPDATE CASCADE);";
   return ans;
 }
