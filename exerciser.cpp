@@ -7,4 +7,5 @@ void exercise(connection *C)
     query3(C, "GeorgiaTech");
     query3(C, "NoExist");
     query4(C, "FL", "Gold");
+    query4(C, "NC", "DarkBlue");
 }
