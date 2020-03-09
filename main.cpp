@@ -100,14 +100,7 @@ int main(int argc, char *argv[])
       work W(*C);
       string dropCMD = "DROP TABLE IF EXISTS player, team, state, color CASCADE;";
       W.exec(dropCMD);
-      string sql = CreateState();
-      W.exec(sql);
-      sql = CreateColor();
-      W.exec(sql);
-      sql = CreateTeam();
-      W.exec(sql);
-      sql = CreatePlayer();
-      W.exec(sql);
+      string sql = CreateState() + "\n" + CreateColor() + "\n" + CreateTeam() + "\n" + CreatePlayer();
       W.commit();
       add_player(C, 1, 1, "yyyy", "xxxx", 1, 1, 1, 1, 1, 1);
       //Close database connection
