@@ -6,7 +6,7 @@ void add_player(connection *C, int team_id, int jersey_num, string first_name, s
     work W(*C);
     stringstream SQL;
     SQL << "INSERT INTO player (team_id, uniform_num, first_name, last_name, mpg, ppg, rpg, apg, spg, bpg) VALUES ( "
-        << team_id << ", " << jersey_num << ", " << quoted(first_name) << ", " << quoted(last_name) << ", " << mpg << ", " << ppg << ", " << rpg << ", " << apg << ", " << spg << ", " << bpg << ");";
+        << team_id << ", " << jersey_num << ", " << std::quoted(first_name) << ", " << std::quoted(last_name) << ", " << mpg << ", " << ppg << ", " << rpg << ", " << apg << ", " << spg << ", " << bpg << ");";
     cout << SQL.str();
     W.exec(SQL.str());
     W.commit();
