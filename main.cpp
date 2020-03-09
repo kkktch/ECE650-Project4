@@ -185,6 +185,7 @@ int main(int argc, char *argv[])
       initPlayer(C);
       //Close database connection
       C->disconnect();
+      exercise(C);
     }
     else
     {
@@ -197,7 +198,6 @@ int main(int argc, char *argv[])
     cerr << e.what() << std::endl;
     return 1;
   }
-  exercise(C);
 
   return 0;
 }

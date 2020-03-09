@@ -59,7 +59,7 @@ void query2(connection *C, string team_color)
         << "WHERE COLOR.name = '" << team_color << "' AND COLOR.COLOR_ID = TEAM.COLOR_ID;";
 
     nontransaction NA(*C);
-    result R(N.exec(SQL.str()));
+    result R(NA.exec(SQL.str()));
     cout << "NAME\N";
     for (result::const_iterator c = R.begin(); c != R.end(); ++c)
     {
