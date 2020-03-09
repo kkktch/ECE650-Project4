@@ -64,7 +64,7 @@ int main (int argc, char *argv[])
         work W_t(*temp);
         string recreate = "drop database if exists \"ACC_BBALL\";\ncreate database \"ACC_BBALL\";\n";
         W_t.exec(recreate);
-        connection *C = new connection("dbname=postgres user=ACC_BBALL password=abc123 hostaddr = 127.0.0.1 port = 5432");
+        connection *C = new connection("dbname=ACC_BBALL user=postgres password=abc123 hostaddr = 127.0.0.1 port = 5432");
         work W(*C);
         string dropCMD = "DROP TABLE IF EXISTS player, team, state, color;";
         W.exec(dropCMD);
