@@ -11,7 +11,7 @@ using namespace pqxx;
 string CreatePlayer()
 {
   std::string ans = "CREATE TABLE PLAYER (​"
-                    "PLAYER_ID SERIAL PRIMARY KEY  NOT NULL,"
+                    "PLAYER_ID INT PRIMARY KEY  NOT NULL,"
                     "TEAM_ID     INT,"
                     "UNIFORM_NUM INT,"
                     "FIRST_NAME  VARCHAR(256),"
@@ -29,7 +29,7 @@ string CreatePlayer()
 string CreateTeam()
 {
   std::string ans = "CREATE TABLE TEAM (​"
-                    "TEAM_ID SERIAL PRIMARY KEY  NOT NULL,"
+                    "TEAM_ID INT PRIMARY KEY  NOT NULL,"
                     "NAME      VARCHAR(256),"
                     "STATE_ID  INT,"
                     "COLOR_ID  INT,"
@@ -43,7 +43,7 @@ string CreateTeam()
 string CreateState()
 {
   std::string ans = "CREATE TABLE STATE (​"
-                    "STATE_ID SERIAL PRIMARY KEY NOT NULL,"
+                    "STATE_ID INT PRIMARY KEY NOT NULL,"
                     "NAME     VARCHAR(256));";
   return ans;
 }
@@ -51,7 +51,7 @@ string CreateState()
 string CreateColor()
 {
   std::string ans = "CREATE TABLE COLOR ("
-                    "COLOR_ID SERIAL PRIMARY KEY NOT NULL,"
+                    "COLOR_ID INT PRIMARY KEY NOT NULL,"
                     "NAME     VARCHAR(256));";
   return ans;
 }
