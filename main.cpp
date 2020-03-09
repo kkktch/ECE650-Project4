@@ -148,8 +148,8 @@ void ReCreateDB()
       pqxx::nontransaction W_t(*temp);
       string recreate = "drop database if exists \"ACC_BBALL\";";
       W_t.exec(recreate);
-      recreate = "create database \"ACC_BBALL\";";
-      W_t.exec(recreate);
+      //recreate = "create database \"ACC_BBALL\";";
+      //W_t.exec(recreate);
       W_t.commit();
       temp->disconnect();
     }
