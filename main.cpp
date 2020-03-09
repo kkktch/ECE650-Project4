@@ -42,7 +42,7 @@ string CreateTeam()
 
 string CreateState()
 {
-  std::string ans = "CREATE TABLE STATE (​"
+  std::string ans = "CREATE TABLE STATE ("
                     "STATE_ID SERIAL PRIMARY KEY NOT NULL,"
                     "NAME VARCHAR(256));";
   return ans;
@@ -50,7 +50,9 @@ string CreateState()
 
 string CreateColor()
 {
-  std::string ans = "CREATE TABLE COLOR (COLOR_ID SERIAL PRIMARY KEY NOT NULL, NAME VARCHAR(256));";
+  std::string ans = "CREATE TABLE COLOR ("
+                    "COLOR_ID SERIAL PRIMARY KEY NOT NULL,"
+                    "NAME VARCHAR(256));";
   return ans;
 }
 
