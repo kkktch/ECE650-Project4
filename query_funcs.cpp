@@ -25,7 +25,7 @@ void add_color(connection *C, string name)
 {
     work W(*C);
     stringstream SQL;
-    SQL << "INSERT INTO color (name) VALUES ( " << quoted(name, '\'');
+    SQL << "INSERT INTO color (name) VALUES ( " << quoted(name, '\'') << ");";
     W.exec(SQL.str());
     W.commit();
 }
