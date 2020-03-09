@@ -53,11 +53,9 @@ void add_color(connection *C, string name)
 
 void query2(connection *C, string team_color)
 {
-    work W(*C);
     stringstream SQL;
     SQL << "SELECT TEAM.name from TEAM, COLOR"
         << "WHERE COLOR.name = '" << team_color << "' AND COLOR.COLOR_ID = TEAM.COLOR_ID;";
-
     nontransaction NA(*C);
     result R(NA.exec(SQL.str()));
     cout << "NAME\n";
