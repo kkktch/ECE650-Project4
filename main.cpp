@@ -44,7 +44,7 @@ string CreateState()
 {
   std::string ans = "CREATE TABLE STATE (​"
                     "STATE_ID SERIAL PRIMARY KEY NOT NULL,"
-                    "NAME      VARCHAR(256));";
+                    "NAME     VARCHAR(256));";
   return ans;
 }
 
@@ -52,7 +52,7 @@ string CreateColor()
 {
   std::string ans = "CREATE TABLE COLOR ("
                     "COLOR_ID SERIAL PRIMARY KEY NOT NULL,"
-                    "NAME      VARCHAR(256));";
+                    "NAME     VARCHAR(256));";
   return ans;
 }
 
@@ -100,10 +100,12 @@ int main(int argc, char *argv[])
       work W(*C);
       string dropCMD = "DROP TABLE IF EXISTS player, team, state, color CASCADE;";
       W.exec(dropCMD);
-      string sql = CreateState() + "\n" + CreateColor() + "\n" + CreateTeam() + "\n" + CreatePlayer();
+      string sql = CreateState();
+      W.exec(sql);
+      sql = CreateColor();
       W.exec(sql);
       W.commit();
-      add_player(C, 1, 1, "yyyy", "xxxx", 1, 1, 1, 1, 1, 1);
+      //add_player(C, 1, 1, "yyyy", "xxxx", 1, 1, 1, 1, 1, 1);
       //Close database connection
       C->disconnect();
     }
