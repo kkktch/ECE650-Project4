@@ -4,11 +4,11 @@ void add_player(connection *C, int team_id, int jersey_num, string first_name, s
                 int mpg, int ppg, int rpg, int apg, double spg, double bpg)
 {
     work W(*C);
-    string SQL = "INSERT INTO player (team_id, uniform_num, first_name, last_name, mpg, ppg, rpg, apg, spg, bpg) "
-                 "VALUES ( " +
-                 (string)team_id + ", " + (string)jersey_num + ", " + first_name + ", " + last_name + ", " + (string)mpg + ", " + (string)ppg + ", " + (string)rpg + ", " + (string)apg + ", " + (string)spg + ", " + (string)bpg + ");";
+    stringstream SQL = "INSERT INTO player (team_id, uniform_num, first_name, last_name, mpg, ppg, rpg, apg, spg, bpg) "
+                       "VALUES ( "
+                       << team_id << ", " << jersey_num << ", " << first_name << ", " << last_name << ", " << mpg << ", " << ppg << ", " << rpg << ", " << apg << ", " << spg << ", " << bpg << ");";
     cout << SQL;
-    W.exec(SQL);
+    W.exec(SQL.str());
     W.commit();
 }
 
