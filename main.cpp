@@ -28,7 +28,7 @@ string CreatePlayer()
 
 string CreateTeam()
 {
-  std::string ans = "CREATE TABLE TEAM (​"
+  std::string ans = "CREATE TABLE TEAM ("
                     "TEAM_ID   SERIAL PRIMARY KEY  NOT NULL,"
                     "NAME      VARCHAR(256),"
                     "STATE_ID  INT,"
