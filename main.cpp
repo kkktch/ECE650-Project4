@@ -58,12 +58,11 @@ int main (int argc, char *argv[])
     //Parameters: database name, user name, user password
 
       //Allocate & initialize a Postgres connection object
-    connection *C = new connection("dbname=ACC_BBALL user=postgres password=abc123 hostaddr = 127.0.0.1 port = 5432");
+    connection *C = new connection("dbname=postgres user=postgres password=abc123 hostaddr = 127.0.0.1 port = 5432");
     if (C->is_open()) {
       cout << "Opened database successfully: " << C->dbname() << endl;
         work W(*C);
-        //string recreate = "\\c postgres;\ndrop database if exists \"ACC_BBALL\";\ncreate database \"ACC_BBALL\";\n\\c \"ACC_BBALL\";";
-        string recreate = "\\c \"ACC_BBALL\";";
+        string recreate = "drop database if exists \"ACC_BBALL\";\ncreate database \"ACC_BBALL\";\n\\c \"ACC_BBALL\";";
         W.exec(recreate);
         string dropCMD = "DROP TABLE IF EXISTS player, team, state, color;";
         W.exec(dropCMD);
