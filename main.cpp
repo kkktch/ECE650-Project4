@@ -2,6 +2,7 @@
 #include <string>
 #include <pqxx/pqxx>
 
+#include "query_funcs.h"
 //#include "exerciser.h"
 
 using namespace std;
@@ -98,6 +99,7 @@ int main(int argc, char *argv[])
       W.exec(dropCMD);
       string sql = CreatePlayer();
       W.exec(sql);
+      add_player(C, 1, 1, "yyyy", "xxxx", 1, 1, 1, 1, 1, 1);
       sql = CreateTeam();
       W.exec(sql);
       sql = CreateColor();
