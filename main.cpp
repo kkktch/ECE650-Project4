@@ -105,6 +105,10 @@ int main(int argc, char *argv[])
       sql = CreateColor();
       W.exec(sql);
       W.commit();
+      work W1(*C);
+      sql = CreateTeam();
+      W1.exec(sql);
+      W1.commit();
       //add_player(C, 1, 1, "yyyy", "xxxx", 1, 1, 1, 1, 1, 1);
       //Close database connection
       C->disconnect();
