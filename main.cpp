@@ -99,7 +99,6 @@ int main(int argc, char *argv[])
       W.exec(dropCMD);
       string sql = CreatePlayer();
       W.exec(sql);
-      add_player(C, 1, 1, "yyyy", "xxxx", 1, 1, 1, 1, 1, 1);
       sql = CreateTeam();
       W.exec(sql);
       sql = CreateColor();
@@ -107,6 +106,7 @@ int main(int argc, char *argv[])
       sql = CreateState();
       W.exec(sql);
       W.commit();
+      add_player(C, 1, 1, "yyyy", "xxxx", 1, 1, 1, 1, 1, 1);
       //Close database connection
       C->disconnect();
     }
