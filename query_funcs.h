@@ -19,14 +19,13 @@ void add_state(connection *C, string name);
 
 void add_color(connection *C, string name);
 
-// void query1(connection *C,
-//             int use_mpg, int min_mpg, int max_mpg,
-// 	    int use_ppg, int min_ppg, int max_ppg,
-// 	    int use_rpg, int min_rpg, int max_rpg,
-// 	    int use_apg, int min_apg, int max_apg,
-// 	    int use_spg, double min_spg, double max_spg,
-// 	    int use_bpg, double min_bpg, double max_bpg
-// 	    );
+void query1(connection *C,
+			int use_mpg, int min_mpg, int max_mpg,
+			int use_ppg, int min_ppg, int max_ppg,
+			int use_rpg, int min_rpg, int max_rpg,
+			int use_apg, int min_apg, int max_apg,
+			int use_spg, double min_spg, double max_spg,
+			int use_bpg, double min_bpg, double max_bpg);
 
 void query2(connection *C, string team_color);
 

@@ -40,22 +40,53 @@ void add_color(connection *C, string name)
     W.commit();
 }
 
-// void query1(connection *C,
-// 	    int use_mpg, int min_mpg, int max_mpg,
-//             int use_ppg, int min_ppg, int max_ppg,
-//             int use_rpg, int min_rpg, int max_rpg,
-//             int use_apg, int min_apg, int max_apg,
-//             int use_spg, double min_spg, double max_spg,
-//             int use_bpg, double min_bpg, double max_bpg
-//             )
-// {
-// }
+void query1(connection *C,
+            int use_mpg, int min_mpg, int max_mpg,
+            int use_ppg, int min_ppg, int max_ppg,
+            int use_rpg, int min_rpg, int max_rpg,
+            int use_apg, int min_apg, int max_apg,
+            int use_spg, double min_spg, double max_spg,
+            int use_bpg, double min_bpg, double max_bpg)
+{
+    int use[6] = {use_mpg, use_ppg, use_rpg, use_apg, use_spg, use_bpg};
+    double data[6] = {mpg, ppg, rpg, apg, spg, bpg};
+    double min[6] = {min_mpg, min_ppg, min_rpg, min_apg, min_spg, min_bpg};
+    double max[6] = {max_mpg, max_ppg, max_rpg, max_apg, max_spg, max_bpg};
+    stringstream SQL;
+    bool first = false;
+    SQL << "SELECT * FROM player ";
+    for (int i = 0; i < 6; i++)
+    {
+        if (use[i])
+        {
+            if (!first)
+            {
+                SQL << " WHERE ";
+            }
+            else
+            {
+                SQL << " AND ";
+            }
+            SQL << "(" << data[i] << " <= " << max[i] << " AND " << data[i] << " >= " << min[i] << ") ";
+            first = true;
+        }
+    }
+    SQL << ";";
+
+    nontransaction NA(*C);
+    result R(NA.exec(SQL.str()));
+    cout << "PLAYER_ID TEAM_ID UNIFORM_NUM FIRST_NAME LAST_NAME MPG PPG RPG APG SPG BPG\n";
+    for (result::const_iterator c = R.begin(); c != R.end(); ++c)
+    {
+        cout << c[0].as<int>() << " " << c[1].as<int>() << " " << c[2].as<int>() << " " << c[3].as<string>() << " " << c[4].as<string>() << " " << c[5].as<int>() << " " << c[6].as<int>() << " " << c[7].as<int>() << " " << c[8].as<int>() << " " << c[9].as<double>() << " " << c[10].as<double>() << endl;
+    }
+}
 
 void query2(connection *C, string team_color)
 {
     stringstream SQL;
     SQL << "SELECT T.name "
-        << "from team as T, color as C "
+        << "FROM team as T, color as C "
         << "WHERE C.name = '" << team_color << "' AND C.color_id = T.color_id;";
     nontransaction NA(*C);
     result R(NA.exec(SQL.str()));
@@ -69,8 +100,9 @@ void query2(connection *C, string team_color)
 void query3(connection *C, string team_name)
 {
     stringstream SQL;
-    SQL << "SELECT P.first_name, P.last_name FROM player as P, team as T "
-        << "WHERE P.team_id = T.team_id AND T.name = '" + team_name + "' "
+    SQL << "SELECT P.first_name, P.last_name "
+        << "FROM player as P, team as T "
+        << "WHERE P.team_id = T.team_id AND T.name = '" << team_name << "' "
         << "ORDER BY P.ppg DESC";
     nontransaction NA(*C);
     result R(NA.exec(SQL.str()));
@@ -87,7 +119,7 @@ void query4(connection *C, string team_state, string team_color)
     SQL << "SELECT P.first_name, P.last_name, P.uniform_num "
         << "FROM player as P, team as T, color as C, state as S "
         << "WHERE P.team_id = T.team_id AND T.color_id = C.color_id AND T.state_id = S.state_id "
-        << "AND S.name = '" + team_state + "' AND C.name = '" + team_color + "';";
+        << "AND S.name = '" << team_state << "' AND C.name = '" << team_color << "';";
     nontransaction NA(*C);
     result R(NA.exec(SQL.str()));
     cout << "FIRST_NAME LAST_NAME UNIFORM_NUM\n";
@@ -102,8 +134,7 @@ void query5(connection *C, int num_wins)
     stringstream SQL;
     SQL << "SELECT P.first_name, P.last_name, T.name, T.wins "
         << "FROM player as P, team as T "
-        << "WHERE P.team_id = T.team_id AND "
-        << "T.wins > " << num_wins << ";";
+        << "WHERE P.team_id = T.team_id AND T.wins > " << num_wins << ";";
     nontransaction NA(*C);
     result R(NA.exec(SQL.str()));
     cout << "FIRST_NAME LAST_NAME TEAM_NAME WINS\n";
