@@ -102,7 +102,7 @@ void query5(connection *C, int num_wins)
     SQL << "SELECT P.first_name, P.last_name, T.name, T.wins "
         << "FROM player as P, team as T "
         << "WHERE P.team_id = T.team_id AND "
-        << "T.wins > '" << num_wins << ";";
+        << "T.wins > " << num_wins << ";";
     nontransaction NA(*C);
     result R(NA.exec(SQL.str()));
     cout << "FIRST_NAME LAST_NAME TEAM_NAME WINS\n";
