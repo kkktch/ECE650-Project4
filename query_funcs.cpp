@@ -96,6 +96,18 @@ void query4(connection *C, string team_state, string team_color)
     }
 }
 
-// void query5(connection *C, int num_wins)
-// {
-// }
+void query5(connection *C, int num_wins)
+{
+    stringstream SQL;
+    SQL << "SELECT P.first_name, P.last_name, T.name, T.wins "
+        << "FROM player as P, team as T "
+        << "WHERE P.team_id = T.team_id AND "
+        << "T.wins > '" << num_wins << ";";
+    nontransaction NA(*C);
+    result R(NA.exec(SQL.str()));
+    cout << "FIRST_NAME LAST_NAME TEAM_NAME WINS\n";
+    for (result::const_iterator c = R.begin(); c != R.end(); ++c)
+    {
+        cout << c[0].as<string>() << " " << c[1].as<string>() << " " << c[2].as<string>() << " " << c[3].as<int>() << endl;
+    }
+}

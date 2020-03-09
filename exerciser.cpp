@@ -8,4 +8,5 @@ void exercise(connection *C)
     query3(C, "NoExist");
     query4(C, "FL", "Gold");
     query4(C, "NC", "DarkBlue");
+    query5(C, 12);
 }
