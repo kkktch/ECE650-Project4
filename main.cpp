@@ -132,7 +132,7 @@ void initPlayer(connection *C)
   while (getline(read_file, content))
   {
     stringstream ss(content);
-    ss >> team_id >> uniform_num >> first_name >> last_name >> mpg >> ppg >> rpg >> apg >> spg >> bpg;
+    ss >> id >> team_id >> uniform_num >> first_name >> last_name >> mpg >> ppg >> rpg >> apg >> spg >> bpg;
     add_player(C, team_id, uniform_num, first_name, last_name, mpg, ppg, rpg, apg, spg, bpg);
   }
   read_file.close();
