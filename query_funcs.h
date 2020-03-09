@@ -32,7 +32,7 @@ void query2(connection *C, string team_color);
 
 void query3(connection *C, string team_name);
 
-// void query4(connection *C, string team_state, string team_color);
+void query4(connection *C, string team_state, string team_color);
 
 // void query5(connection *C, int num_wins);
 
