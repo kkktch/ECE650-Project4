@@ -62,7 +62,7 @@ int main (int argc, char *argv[])
     if (C->is_open()) {
       cout << "Opened database successfully: " << C->dbname() << endl;
         work W(*C);
-        string dropCMD = "DROP TABLE player, team, state, color;";
+        string dropCMD = "DROP TABLE IF EXISTS player, team, state, color;";
         W.exec(dropCMD);
         string sql = CreatePlayer();
         W.exec(sql);
