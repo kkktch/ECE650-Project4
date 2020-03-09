@@ -106,7 +106,7 @@ int main(int argc, char *argv[])
       W.exec(sql);
       sql = CreateTeam();
       W.exec(sql);
-      sqp = CreatePlayer();
+      sql = CreatePlayer();
       W.exec(sql);
       W.commit();
       //add_player(C, 1, 1, "yyyy", "xxxx", 1, 1, 1, 1, 1, 1);
