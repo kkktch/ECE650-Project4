@@ -62,7 +62,7 @@ int main (int argc, char *argv[])
     if (temp->is_open()) {
       cout << "Opened database successfully: " << temp->dbname() << endl;
         work W_t(*temp);
-        string recreate = "drop database if exists \"ACC_BBALL\";\ncreate database \"ACC_BBALL\";\n";
+        string recreate = "SET AUTOCOMMIT = ON;\ndrop database if exists \"ACC_BBALL\";\ncreate database \"ACC_BBALL\";\n";
         W_t.exec(recreate);
         connection *C = new connection("dbname=postgres user=ACC_BBALL password=abc123 hostaddr = 127.0.0.1 port = 5432");
         work W(*C);
