@@ -62,7 +62,7 @@ int main (int argc, char *argv[])
     if (temp->is_open()) {
       cout << "Opened database successfully: " << temp->dbname() << endl;
         pqxx::nontransaction W_t(*temp);
-        string recreate = "drop database if exists \"ACC_BBALL\";\ncreate database \"ACC_BBALL\";\n";
+        string recreate = "drop database if exists \"ACC_BBALL\";";
         W_t.exec(recreate);
         temp->disconnect();
         connection *C = new connection("dbname=ACC_BBALL user=postgres password=passw0rd hostaddr = 127.0.0.1 port = 5432");
