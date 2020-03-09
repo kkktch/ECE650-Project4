@@ -9,7 +9,6 @@ void add_player(connection *C, int team_id, int jersey_num, string first_name, s
     stringstream SQL;
     SQL << "INSERT INTO player (team_id, uniform_num, first_name, last_name, mpg, ppg, rpg, apg, spg, bpg) VALUES ( "
         << team_id << ", " << jersey_num << ", " << quoted(first_name, '\'') << ", " << quoted(last_name, '\'') << ", " << mpg << ", " << ppg << ", " << rpg << ", " << apg << ", " << spg << ", " << bpg << ");";
-    cout << SQL.str();
     W.exec(SQL.str());
     W.commit();
 }
@@ -22,9 +21,14 @@ void add_player(connection *C, int team_id, int jersey_num, string first_name, s
 // {
 // }
 
-// void add_color(connection *C, string name)
-// {
-// }
+void add_color(connection *C, string name)
+{
+    work W(*C);
+    stringstream SQL;
+    SQL << "INSERT INTO color (name) VALUES ( " << quoted(name, '\'');
+    W.exec(SQL.str());
+    W.commit();
+}
 
 // void query1(connection *C,
 // 	    int use_mpg, int min_mpg, int max_mpg,

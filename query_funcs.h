@@ -17,7 +17,7 @@ void add_player(connection *C, int team_id, int jersey_num, string first_name, s
 
 // void add_state(connection *C, string name);
 
-// void add_color(connection *C, string name);
+void add_color(connection *C, string name);
 
 // void query1(connection *C,
 //             int use_mpg, int min_mpg, int max_mpg,

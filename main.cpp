@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <pqxx/pqxx>
 
@@ -56,6 +57,26 @@ string CreateColor()
   return ans;
 }
 
+void initColor(connection *C)
+{
+  work W(*C);
+  string sql = CreateColor();
+  W.exec(sql);
+  W.commit();
+
+  int id;
+  string content, name;
+  ifstream read_file;
+  read_file.open("color.txt", ios::binary);
+  while (getline(read_file, content))
+  {
+    stringstream ss(content);
+    ss >> id >> name;
+    add_color(C, name);
+  }
+  read_file.close();
+}
+
 void ReCreateDB()
 {
   try
@@ -97,19 +118,19 @@ int main(int argc, char *argv[])
     if (C->is_open())
     {
       cout << "Opened database successfully: " << C->dbname() << endl;
-      work W(*C);
+      work D(*C);
       string dropCMD = "DROP TABLE IF EXISTS player, team, state, color CASCADE;";
-      W.exec(dropCMD);
+      D.exec(dropCMD);
+      D.commit();
+      initColor(C);
+      work W(*C);
       string sql = CreateState();
-      W.exec(sql);
-      sql = CreateColor();
       W.exec(sql);
       sql = CreateTeam();
       W.exec(sql);
       sql = CreatePlayer();
       W.exec(sql);
       W.commit();
-      //add_player(C, 1, 1, "yyyy", "xxxx", 1, 1, 1, 1, 1, 1);
       //Close database connection
       C->disconnect();
     }
