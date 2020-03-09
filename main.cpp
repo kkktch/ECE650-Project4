@@ -35,7 +35,7 @@ string CreateTeam()
                     "COLOR_ID  INT,"
                     "WINS      INT,"
                     "LOSSES    INT,"
-                    //"FOREIGN KEY (STATE_ID) REFERENCES STATE(STATE_ID) ON DELETE SET NULL ON UPDATE CASCADE,"
+                    "FOREIGN KEY (STATE_ID) REFERENCES STATE(STATE_ID) ON DELETE SET NULL ON UPDATE CASCADE,"
                     "FOREIGN KEY (COLOR_ID) REFERENCES COLOR(COLOR_ID) ON DELETE SET NULL ON UPDATE CASCADE);";
   return ans;
 }
@@ -102,11 +102,9 @@ int main(int argc, char *argv[])
       W.exec(sql);
       sql = CreateColor();
       W.exec(sql);
-      W.commit();
-      work W1(*C);
       sql = CreateTeam();
-      W1.exec(sql);
-      W1.commit();
+      W.exec(sql);
+      W.commit();
       //add_player(C, 1, 1, "yyyy", "xxxx", 1, 1, 1, 1, 1, 1);
       //Close database connection
       C->disconnect();
