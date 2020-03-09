@@ -63,7 +63,7 @@ int main (int argc, char *argv[])
       cout << "Opened database successfully: " << C->dbname() << endl;
         work W(*C);
         //string recreate = "\\c postgres;\ndrop database if exists \"ACC_BBALL\";\ncreate database \"ACC_BBALL\";\n\\c \"ACC_BBALL\";";
-        string recreate = "\\c postgres;\n";
+        string recreate = "\\c \"ACC_BBALL\";";
         W.exec(recreate);
         string dropCMD = "DROP TABLE IF EXISTS player, team, state, color;";
         W.exec(dropCMD);
