@@ -22,7 +22,7 @@ string CreatePlayer()
                     "APG         INT,"
                     "SPG         DOUBLE PRECISION,"
                     "BPG         DOUBLE PRECISION,"
-                    "FOREIGN KEY (TEAM_ID) REFERENCES TEAM(TEAM_ID) ON DELETE SET NULL ON UPDATE CASCADE);";
+                    "CONSTRAINT TEAM_FK FOREIGN KEY (TEAM_ID) REFERENCES TEAM(TEAM_ID) ON DELETE SET NULL ON UPDATE CASCADE);";
   return ans;
 }
 
@@ -35,8 +35,8 @@ string CreateTeam()
                     "COLOR_ID  INT,"
                     "WINS      INT,"
                     "LOSSES    INT,"
-                    "FOREIGN KEY (STATE_ID) REFERENCES STATE(STATE_ID) ON DELETE SET NULL ON UPDATE CASCADE,"
-                    "FOREIGN KEY (COLOR_ID) REFERENCES COLOR(COLOR_ID) ON DELETE SET NULL ON UPDATE CASCADE);";
+                    "CONSTRAINT STATE_FK FOREIGN KEY (STATE_ID) REFERENCES STATE(STATE_ID) ON DELETE SET NULL ON UPDATE CASCADE,"
+                    "CONSTRAINT COLOR_FK FOREIGN KEY (COLOR_ID) REFERENCES COLOR(COLOR_ID) ON DELETE SET NULL ON UPDATE CASCADE);";
   return ans;
 }
 
