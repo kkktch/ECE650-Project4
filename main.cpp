@@ -50,7 +50,7 @@ string CreateColor() {
 }
 
 void ReCreateDB() {
-  connection *temp = = new connection("dbname=postgres user=postgres password=passw0rd hostaddr = 127.0.0.1 port = 5432");
+  connection *temp = new connection("dbname=postgres user=postgres password=passw0rd hostaddr = 127.0.0.1 port = 5432");
   if (temp->is_open()) {
     pqxx::nontransaction W_t(*temp);
     string recreate = "drop database if exists \"ACC_BBALL\";";
