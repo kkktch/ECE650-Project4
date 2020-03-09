@@ -13,13 +13,23 @@ void add_player(connection *C, int team_id, int jersey_num, string first_name, s
     W.commit();
 }
 
-// void add_team(connection *C, string name, int state_id, int color_id, int wins, int losses)
-// {
-// }
+void add_team(connection *C, string name, int state_id, int color_id, int wins, int losses)
+{
+    work W(*C);
+    stringstream SQL;
+    SQL << "INSERT INTO team (name, state_id, color_id, wins, losses) VALUES ( " << quoted(name, '\'') << ", " << state_id << ", " << color_id << ", " << wins << ", " << losses << ");";
+    W.exec(SQL.str());
+    W.commit();
+}
 
-// void add_state(connection *C, string name)
-// {
-// }
+void add_state(connection *C, string name)
+{
+    work W(*C);
+    stringstream SQL;
+    SQL << "INSERT INTO state (name) VALUES ( " << quoted(name, '\'') << ");";
+    W.exec(SQL.str());
+    W.commit();
+}
 
 void add_color(connection *C, string name)
 {

@@ -77,6 +77,67 @@ void initColor(connection *C)
   read_file.close();
 }
 
+void initState(connection *C)
+{
+  work W(*C);
+  string sql = CreateState();
+  W.exec(sql);
+  W.commit();
+
+  int id;
+  string content, name;
+  ifstream read_file;
+  read_file.open("state.txt", ios::binary);
+  while (getline(read_file, content))
+  {
+    stringstream ss(content);
+    ss >> id >> name;
+    add_state(C, name);
+  }
+  read_file.close();
+}
+
+void initTeam(connection *C)
+{
+  work W(*C);
+  string sql = CreateTeam();
+  W.exec(sql);
+  W.commit();
+
+  int id, state_id, color_id, wins, losses;
+  string content, name;
+  ifstream read_file;
+  read_file.open("team.txt", ios::binary);
+  while (getline(read_file, content))
+  {
+    stringstream ss(content);
+    ss >> id >> name >> state_id >> color_id >> wins >> losses;
+    add_team(C, name, state_id, color_id, wins, losses);
+  }
+  read_file.close();
+}
+
+void initPlayer(connection *C)
+{
+  work W(*C);
+  string sql = CreatePlayer();
+  W.exec(sql);
+  W.commit();
+
+  int id, team_id, uniform_num, mpg, ppg, rpg, apg;
+  double spg, bpg;
+  string content, first_name, last_name;
+  ifstream read_file;
+  read_file.open("player.txt", ios::binary);
+  while (getline(read_file, content))
+  {
+    stringstream ss(content);
+    ss >> team_id >> uniform_num >> first_name >> last_name >> mpg >> ppg >> rpg >> apg >> spg >> bpg;
+    add_player(C, team_id, uniform_num, first_name, last_name, mpg, ppg, rpg, apg, spg, bpg);
+  }
+  read_file.close();
+}
+
 void ReCreateDB()
 {
   try
@@ -118,19 +179,14 @@ int main(int argc, char *argv[])
     if (C->is_open())
     {
       cout << "Opened database successfully: " << C->dbname() << endl;
-      work D(*C);
+      work Drop(*C);
       string dropCMD = "DROP TABLE IF EXISTS player, team, state, color CASCADE;";
-      D.exec(dropCMD);
-      D.commit();
+      Drop.exec(dropCMD);
+      Drop.commit();
       initColor(C);
-      work W(*C);
-      string sql = CreateState();
-      W.exec(sql);
-      sql = CreateTeam();
-      W.exec(sql);
-      sql = CreatePlayer();
-      W.exec(sql);
-      W.commit();
+      initState(C);
+      initTeam(C);
+      initPlayer(C);
       //Close database connection
       C->disconnect();
     }
