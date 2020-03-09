@@ -49,7 +49,7 @@ void query1(connection *C,
             int use_bpg, double min_bpg, double max_bpg)
 {
     int use[6] = {use_mpg, use_ppg, use_rpg, use_apg, use_spg, use_bpg};
-    double data[6] = {mpg, ppg, rpg, apg, spg, bpg};
+    string data[6] = {"mpg", "ppg", "rpg", "apg", "spg", "bpg"};
     double min[6] = {min_mpg, min_ppg, min_rpg, min_apg, min_spg, min_bpg};
     double max[6] = {max_mpg, max_ppg, max_rpg, max_apg, max_spg, max_bpg};
     stringstream SQL;
