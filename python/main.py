@@ -98,6 +98,5 @@ for line in player_lines:
     session.commit()
 player_file.close()
 
-query2(session, "Red")
 
 session.close()
