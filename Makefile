@@ -1,5 +1,5 @@
 CC=g++
-CFLAGS=-O3
+CFLAGS=-O3 -W
 EXTRAFLAGS=-lpqxx -lpq
 
 all: test
