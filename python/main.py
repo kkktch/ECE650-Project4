@@ -71,7 +71,7 @@ def query1(session, use_mpg, min_mpg, max_mpg,
     print("PLAYER_ID TEAM_ID UNIFORM_NUM FIRST_NAME LAST_NAME MPG PPG RPG APG SPG BPG")
     for single_player in tmp:
         print(str(single_player.player_id) + " " + str(single_player.team_id) + " " + str(single_player.uniform_num) + " " + single_player.first_name + " " + single_player.last_name + " " +
-              str(single_player.mpg) + " " + str(single_player.ppg) + " " + str(single_player.rpg) + " " + str(single_player.apg) + " " + str(round(single_player.spg, 1)) + " " + str(round(single_player.bpg, 1)))
+              str(single_player.mpg) + " " + str(single_player.ppg) + " " + str(single_player.rpg) + " " + str(single_player.apg) + " " + str('%.1f' % single_player.spg) + " " + str('%.1f' % single_player.bpg))
 
 
 def query2(session, team_color):
