@@ -98,6 +98,6 @@ for line in player_lines:
     session.commit()
 player_file.close()
 
-query2(engine, "Red")
+query2(session, "Red")
 
 session.close()
