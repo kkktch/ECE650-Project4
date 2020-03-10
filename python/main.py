@@ -58,10 +58,10 @@ def query2(session, team_color):
 
 def query3(session, team_name):
     p_names = session.query(Player).filter(
-        Player.team_id == Team.team_id, Team.name == team_name).order_by(Player.ppg.desc()).values("Player.first_name", "Player.last_name")
+        Player.team_id == Team.team_id, Team.name == team_name).order_by(Player.ppg.desc())
     print("FIRST_NAME LAST_NAME")
     for single_player in p_names:
-        print(single_player[0], single_player[1])
+        print(single_player.first_name + " " + single_player.last_name)
 
 
 def query4(session, team_state, team_color):
@@ -72,6 +72,15 @@ def query4(session, team_state, team_color):
     for single_nm in nms:
         print(single_nm.first_name + " " +
               single_nm.last_name + " " + str(single_nm.uniform_num))
+
+
+def query5(session, num_wins):
+    win_p = session.query(Player).filter(
+        Player.team_id == Team.team_id, Team.wins == num_wins)
+    print("FIRST_NAME LAST_NAME TEAM_NAME WINS")
+    for single_win in win_p:
+        print(single_win.first_name + " " + single_win.last_name + " " +
+              single_win.team_id.name + " " + single_win.team_id.wins)
 
 
 engine = create_engine(
@@ -127,5 +136,6 @@ query2(session, "Red")
 query3(session, "GeorgiaTech")
 query4(session, "FL", "Gold")
 query4(session, "NC", "DarkBlue")
+query5(session, 12)
 
 session.close()
