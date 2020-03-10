@@ -48,6 +48,14 @@ class Player(Base):
     bpg = Column(DOUBLE_PRECISION)
 
 
+def query2(session, team_color):
+    team_names = session.query(Team).filter(
+        Color.name == team_color, Team.color_id == Color.color_id)
+    print("NAME")
+    for single_name in team_names:
+        print(single_name.name)
+
+
 engine = create_engine(
     "postgresql://postgres:passw0rd@localhost:5432/ACC_BBALL")
 Player.__table__.drop(engine, checkfirst=True)
@@ -100,11 +108,3 @@ player_file.close()
 query2(session, "Red")
 
 session.close()
-
-
-def query2(session, team_color):
-    team_names = session.query(Team).filter(
-        Color.name == team_color, Team.color_id == Color.color_id)
-    print("NAME")
-    for single_name in team_names:
-        print(single_name.name)
