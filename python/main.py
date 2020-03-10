@@ -59,7 +59,7 @@ Base.metadata.create_all(engine)
 DBsession = sessionmaker(bind=engine)
 session = DBsession()
 
-color_file = open("color.txt")
+color_file = open("../color.txt")
 color_lines = color_file.readlines()
 for line in color_lines:
     line_list = line.split()
