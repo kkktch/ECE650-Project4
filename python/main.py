@@ -7,7 +7,6 @@ Base = declarative_base()
 class State(Base):
     __tablename__ = 'state'
 
-    # emits SERIAL
     state_id = Column(Integer, autoincrement=True, primary_key=True)
     name = Column(String(256))
 
@@ -18,6 +17,14 @@ class Color(Base):
     color_id = Column(Integer, autoincrement=True, primary_key=True)
     name = Column(String(256))
 
+
+Re_Engine = create_engine(
+    "postgresql://postgres:passw0rd@localhost:5432/postgres")
+conn = Re_Engine.connect()
+conn.execute("commit")
+conn.execute("drop database if exists \"ACC_BBALL\"")
+conn.execute("create database \"ACC_BBALL\"")
+conn.close()
 
 engine = create_engine(
     "postgresql://postgres:passw0rd@localhost:5432/ACC_BBALL", echo=True)
