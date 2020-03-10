@@ -1,4 +1,4 @@
-1 1 1 Jerome Robinson 34 19 4 3 1.7 0.423
+1 1 1 Jerome Robinson 34 19 4 3 1.7 0
 2 1 0 Ky Bowman 29 14 5 3 1.2 0.1234
 3 1 25 Jordan Chatman 25 9 2 1 0.6 0.2432
 4 1 11 A.J. Turner 31 8 3 3 0.6 0.2234
