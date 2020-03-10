@@ -50,10 +50,10 @@ class Player(Base):
 
 def query2(session, team_color):
     team_names = session.query(Team).filter(
-        Color.name == team_color, Team.color_id == Color.color_id)
+        Color.name == team_color, Team.color_id == Color.color_id).value("name")
     print("NAME")
     for single_name in team_names:
-        print(single_name.name)
+        print(single_name)
 
 
 def query3(session, team_name):
