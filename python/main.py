@@ -77,4 +77,14 @@ for line in state_lines:
     session.commit()
 state_file.close()
 
+team_file = open("team.txt")
+team_lines = team_file.readlines()
+for line in team_lines:
+    line_list = line.split()
+    new_team = Team(name=line_list[1], state_id=line_list[2],
+                    color_id=line_list[3], wins=line_list[4], losses=line_list[5])
+    session.add(new_team)
+    session.commit()
+team_file.close()
+
 session.close()
