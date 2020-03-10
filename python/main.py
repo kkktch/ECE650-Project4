@@ -3,6 +3,7 @@ from sqlalchemy.dialects.postgresql import DOUBLE_PRECISION
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 import os
+import query_funcs
 
 Base = declarative_base()
 
@@ -97,13 +98,6 @@ for line in player_lines:
     session.commit()
 player_file.close()
 
-print(type(session))
-
-team_names = session.query(Team).filter(
-    Color.name == "Red", Team.color_id == Color.color_id)
-print("NAME")
-for single_name in team_names:
-    print(single_name.name)
-
+query2(session, "Red")
 
 session.close()
