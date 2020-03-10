@@ -53,6 +53,8 @@ void query1(connection *C,
     double min[6] = {min_mpg, min_ppg, min_rpg, min_apg, min_spg, min_bpg};
     double max[6] = {max_mpg, max_ppg, max_rpg, max_apg, max_spg, max_bpg};
     stringstream SQL;
+    SQL.setf(std::ios::fixed);
+    SQL.precision(1);
     bool first = false;
     SQL << "SELECT * FROM player ";
     for (int i = 0; i < 6; i++)
