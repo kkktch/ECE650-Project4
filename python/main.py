@@ -101,7 +101,6 @@ team_names = session.query(Team).filter(
     Color.name == "Red", Team.color_id == Color.color_id)
 print("NAME\n")
 for single_name in team_names:
-    print(type(single_name))
     print(single_name.name)
 
 
