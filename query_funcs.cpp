@@ -53,8 +53,6 @@ void query1(connection *C,
     double min[6] = {min_mpg, min_ppg, min_rpg, min_apg, min_spg, min_bpg};
     double max[6] = {max_mpg, max_ppg, max_rpg, max_apg, max_spg, max_bpg};
     stringstream SQL;
-    SQL.setf(std::ios::fixed);
-    SQL.precision(1);
     bool first = false;
     SQL << "SELECT * FROM player ";
     for (int i = 0; i < 6; i++)
@@ -77,6 +75,8 @@ void query1(connection *C,
 
     nontransaction NA(*C);
     result R(NA.exec(SQL.str()));
+    cout.flags(ios::fixed);
+    cout.precision(1);
     cout << "PLAYER_ID TEAM_ID UNIFORM_NUM FIRST_NAME LAST_NAME MPG PPG RPG APG SPG BPG\n";
     for (result::const_iterator c = R.begin(); c != R.end(); ++c)
     {
