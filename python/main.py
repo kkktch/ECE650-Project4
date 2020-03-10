@@ -50,19 +50,18 @@ class Player(Base):
 
 def query2(session, team_color):
     team_names = session.query(Team).filter(
-        Color.name == team_color, Team.color_id == Color.color_id).value("team.name")
-    print(type(team_names))
+        Color.name == team_color, Team.color_id == Color.color_id)
     print("NAME")
     for single_name in team_names:
-        print(single_name)
+        print(single_name.name)
 
 
 def query3(session, team_name):
     p_names = session.query(Player).filter(
-        Player.team_id == Team.team_id, Team.name == team_name).order_by(Player.ppg.desc())
+        Player.team_id == Team.team_id, Team.name == team_name).order_by(Player.ppg.desc()).values("Player.first_name", "Player.last_name")
     print("FIRST_NAME LAST_NAME")
     for single_player in p_names:
-        print(single_player.first_name + " " + single_player.last_name)
+        print(single_player[0], single_player[1])
 
 
 def query4(session, team_state, team_color):
