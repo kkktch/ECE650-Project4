@@ -81,8 +81,8 @@ team_file = open("team.txt")
 team_lines = team_file.readlines()
 for line in team_lines:
     line_list = line.split()
-    new_team = Team(name=line_list[1], state_id=line_list[2],
-                    color_id=line_list[3], wins=line_list[4], losses=line_list[5])
+    new_team = Team(name=line_list[1], state_id=int(line_list[2]),
+                    color_id=int(line_list[3]), wins=int(line_list[4]), losses=int(line_list[5]))
     session.add(new_team)
     session.commit()
 team_file.close()
