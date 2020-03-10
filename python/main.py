@@ -98,11 +98,11 @@ for line in player_lines:
 player_file.close()
 
 team_names = session.query(Team, Color).filter(
-    Color.name == "Red", Team.color_id == Color.color_id).all()
+    Color.name == "Red", Team.color_id == Color.color_id)
 print("NAME\n")
 for single_name in team_names:
     print(type(single_name))
-    print(single_name.name, "\n")
+    print(single_name.name)
 
 
 session.close()
