@@ -23,6 +23,7 @@ Re_Engine = create_engine(
 conn = Re_Engine.connect()
 conn.execute("commit")
 conn.execute("drop database if exists \"ACC_BBALL\"")
+conn.execute("commit")
 conn.execute("create database \"ACC_BBALL\"")
 conn.close()
 
