@@ -24,8 +24,8 @@ class Team(Base):
 
     team_id = Column(Integer, autoincrement=True, primary_key=True)
     name = Column(String(256))
-    state_id = Column(Integer, ForeignKey("state.state_id"))
-    color_id = Column(Integer, ForeignKey("color.color_id"))
+    state_id = Column(Integer)
+    color_id = Column(Integer)
     wins = Column(Integer)
     losses = Column(Integer)
 
@@ -34,7 +34,7 @@ class Player(Base):
     __tablename__ = 'player'
 
     player_id = Column(Integer, autoincrement=True, primary_key=True)
-    team_id = Column(Integer, ForeignKey("team.team_id"))
+    team_id = Column(Integer)
     uniform_num = Column(Integer)
     first_name = Column(String(256))
     last_name = Column(String(256))
