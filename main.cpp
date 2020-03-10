@@ -188,7 +188,6 @@ int main(int argc, char *argv[])
     }
     else
     {
-      cout << "Can't open database" << endl;
       return 1;
     }
   }
