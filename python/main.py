@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine, Column, Integer, String, Sequence
+from sqlalchemy import create_engine, Column, Integer, String, Sequence, select
 from sqlalchemy.dialects.postgresql import DOUBLE_PRECISION
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
@@ -96,5 +96,10 @@ for line in player_lines:
     session.add(new_player)
     session.commit()
 player_file.close()
+
+team_names = session.query(Team, Color).filter(
+    Color.name == "Red", Team.color_id == Color.color_id).all()
+print("NAME\n")
+print(team_names)
 
 session.close()
