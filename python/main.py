@@ -48,6 +48,32 @@ class Player(Base):
     bpg = Column(DOUBLE_PRECISION)
 
 
+def query1(session, use_mpg, min_mpg, max_mpg,
+           use_ppg, min_ppg, max_ppg,
+           use_rpg, min_rpg, max_rpg,
+           use_apg, min_apg, max_apg,
+           use_spg, min_spg, max_spg,
+           use_bpg, min_bpg, max_bpg):
+    tmp = session.query(Player)
+    if (use_mpg):
+        tmp = tmp.filter(Player.mpg >= min_mpg, Player.mpg <= max_mpg)
+    if (use_ppg):
+        tmp = tmp.filter(Player.ppg >= min_ppg, Player.ppg <= max_ppg)
+    if (use_rpg):
+        tmp = tmp.filter(Player.rpg >= min_rpg, Player.rpg <= max_rpg)
+    if (use_apg):
+        tmp = tmp.filter(Player.apg >= min_apg, Player.apg <= max_apg)
+    if (use_spg):
+        tmp = tmp.filter(Player.spg >= min_spg, Player.spg <= max_spg)
+    if (use_bpg):
+        tmp = tmp.filter(Player.bpg >= min_bpg, Player.bpg <= max_bpg)
+
+    print("PLAYER_ID TEAM_ID UNIFORM_NUM FIRST_NAME LAST_NAME MPG PPG RPG APG SPG BPG")
+    for single_player in tmp:
+        print(str(single_player.player_id) + " " + str(single_player.team_id) + " " + str(single_player.uniform_num) + " " + single_player.first_name + " " + single_player.last_name + " " +
+              str(single_player.mpg) + " " + str(single_player.ppg) + " " + str(single_player.rpg) + " " + str(single_player.apg) + " " + str(single_player.spg) + " " + str(single_player.bpg))
+
+
 def query2(session, team_color):
     team_names = session.query(Team).filter(
         Color.name == team_color, Team.color_id == Color.color_id)
@@ -132,6 +158,12 @@ for line in player_lines:
     session.commit()
 player_file.close()
 
+query1(session, 1, 35, 40, 0, 0, 0, 0, 5, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+query1(session, 0, 35, 40, 0, 0, 0, 1, 5, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+query1(session, 0, 35, 40, 1, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+query1(session, 0, 35, 40, 0, 0, 0, 0, 0, 0, 1, 0, 10, 0, 0, 0, 0, 0, 0)
+query1(session, 0, 35, 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 5, 0, 0, 0)
+query1(session, 0, 35, 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 5)
 query2(session, "Red")
 query3(session, "GeorgiaTech")
 query4(session, "FL", "Gold")
