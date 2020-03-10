@@ -80,7 +80,7 @@ def query5(session, num_wins):
     print("FIRST_NAME LAST_NAME TEAM_NAME WINS")
     for single_win in win_p:
         print(single_win[0].first_name + " " + single_win[0].last_name + " " +
-              single_win[1].name + " " + single_win[1].wins)
+              single_win[1].name + " " + str(single_win[1].wins))
 
 
 engine = create_engine(
