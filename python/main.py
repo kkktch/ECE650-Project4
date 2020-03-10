@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine, Column, Integer, String, Sequence, Double_Precision
+from sqlalchemy import create_engine, Column, Integer, String, Sequence, Double_precision
 from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
@@ -41,8 +41,8 @@ class Player(Base):
     ppg = Column(Integer)
     rpg = Column(Integer)
     apg = Column(Integer)
-    spg = Column(Double_Precision)
-    bpg = Column(Double_Precision)
+    spg = Column(Double_precision)
+    bpg = Column(Double_precision)
 
 
 engine = create_engine(
