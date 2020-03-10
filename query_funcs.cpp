@@ -23,9 +23,6 @@ void add_team(connection *C, string name, int state_id, int color_id, int wins, 
     string SQL = "INSERT INTO team (name, state_id, color_id, wins, losses) VALUES ( ";
     SQL += W.quote(name) + ",";
     SQL += to_string(state_id) + "," + to_string(color_id) + "," + to_string(wins) + "," + to_string(losses) + ");";
-    // stringstream SQL;
-    // SQL << "INSERT INTO team (name, state_id, color_id, wins, losses) VALUES ( " << W.quote(name) << ", " << state_id << ", " << color_id << ", " << wins << ", " << losses << ");";
-    // W.exec(SQL.str());
     W.exec(SQL);
     W.commit();
 }
@@ -33,18 +30,18 @@ void add_team(connection *C, string name, int state_id, int color_id, int wins, 
 void add_state(connection *C, string name)
 {
     work W(*C);
-    stringstream SQL;
-    SQL << "INSERT INTO state (name) VALUES ( " << W.quote(name) << ");";
-    W.exec(SQL.str());
+    string SQL = "INSERT INTO state (name) VALUES ( ";
+    SQL += W.quote(name) + ");";
+    W.exec(SQL);
     W.commit();
 }
 
 void add_color(connection *C, string name)
 {
     work W(*C);
-    stringstream SQL;
-    SQL << "INSERT INTO color (name) VALUES ( " << W.quote(name) << ");";
-    W.exec(SQL.str());
+    string SQL = "INSERT INTO color (name) VALUES ( ";
+    SQL += W.quote(name) + ");";
+    W.exec(SQL);
     W.commit();
 }
 
@@ -60,29 +57,28 @@ void query1(connection *C,
     string data[6] = {"mpg", "ppg", "rpg", "apg", "spg", "bpg"};
     double min[6] = {min_mpg, min_ppg, min_rpg, min_apg, min_spg, min_bpg};
     double max[6] = {max_mpg, max_ppg, max_rpg, max_apg, max_spg, max_bpg};
-    stringstream SQL;
+    string SQL = "SELECT * FROM player ";
     bool first = false;
-    SQL << "SELECT * FROM player ";
     for (int i = 0; i < 6; i++)
     {
         if (use[i])
         {
             if (!first)
             {
-                SQL << " WHERE ";
+                SQL += " WHERE ";
             }
             else
             {
-                SQL << " AND ";
+                SQL += " AND ";
             }
-            SQL << "(" << data[i] << " <= " << max[i] << " AND " << data[i] << " >= " << min[i] << ") ";
+            SQL += "(" + to_string(data[i]) + " <= " + to_string(max[i]) + " AND " + to_string(data[i]) + " >= " + to_string(min[i]) << ") ";
             first = true;
         }
     }
-    SQL << ";";
+    SQL += ";";
 
     nontransaction NA(*C);
-    result R(NA.exec(SQL.str()));
+    result R(NA.exec(SQL));
     cout.flags(ios::fixed);
     cout.precision(1);
     cout << "PLAYER_ID TEAM_ID UNIFORM_NUM FIRST_NAME LAST_NAME MPG PPG RPG APG SPG BPG\n";
@@ -94,12 +90,10 @@ void query1(connection *C,
 
 void query2(connection *C, string team_color)
 {
-    stringstream SQL;
-    SQL << "SELECT T.name "
-        << "FROM team as T, color as C "
-        << "WHERE C.name = '" << team_color << "' AND C.color_id = T.color_id;";
+    string SQL = "SELECT T.name FROM team as T, color as C WHERE C.name = '";
+    SQL += team_color + "' AND C.color_id = T.color_id;";
     nontransaction NA(*C);
-    result R(NA.exec(SQL.str()));
+    result R(NA.exec(SQL));
     cout << "NAME\n";
     for (result::const_iterator c = R.begin(); c != R.end(); ++c)
     {
@@ -110,12 +104,9 @@ void query2(connection *C, string team_color)
 void query3(connection *C, string team_name)
 {
     stringstream SQL;
-    SQL << "SELECT P.first_name, P.last_name "
-        << "FROM player as P, team as T "
-        << "WHERE P.team_id = T.team_id AND T.name = '" << team_name << "' "
-        << "ORDER BY P.ppg DESC";
+    string SQL = "SELECT P.first_name, P.last_name FROM player as P, team as T WHERE P.team_id = T.team_id AND T.name = '" SQL += team_name + "' ORDER BY P.ppg DESC;";
     nontransaction NA(*C);
-    result R(NA.exec(SQL.str()));
+    result R(NA.exec(SQL));
     cout << "FIRST_NAME LAST_NAME\n";
     for (result::const_iterator c = R.begin(); c != R.end(); ++c)
     {
@@ -125,13 +116,11 @@ void query3(connection *C, string team_name)
 
 void query4(connection *C, string team_state, string team_color)
 {
-    stringstream SQL;
-    SQL << "SELECT P.first_name, P.last_name, P.uniform_num "
-        << "FROM player as P, team as T, color as C, state as S "
-        << "WHERE P.team_id = T.team_id AND T.color_id = C.color_id AND T.state_id = S.state_id "
-        << "AND S.name = '" << team_state << "' AND C.name = '" << team_color << "';";
+    string SQL = "SELECT P.first_name, P.last_name, P.uniform_num FROM player as P, team as T, color as C, state as S ";
+    SQL += "WHERE P.team_id = T.team_id AND T.color_id = C.color_id AND T.state_id = S.state_id AND S.name = '";
+    SQL += team_state + "' AND C.name = '" + team_color + "';";
     nontransaction NA(*C);
-    result R(NA.exec(SQL.str()));
+    result R(NA.exec(SQL));
     cout << "FIRST_NAME LAST_NAME UNIFORM_NUM\n";
     for (result::const_iterator c = R.begin(); c != R.end(); ++c)
     {
@@ -141,12 +130,10 @@ void query4(connection *C, string team_state, string team_color)
 
 void query5(connection *C, int num_wins)
 {
-    stringstream SQL;
-    SQL << "SELECT P.first_name, P.last_name, T.name, T.wins "
-        << "FROM player as P, team as T "
-        << "WHERE P.team_id = T.team_id AND T.wins > " << num_wins << ";";
+    string SQL = "SELECT P.first_name, P.last_name, T.name, T.wins FROM player as P, team as T WHERE P.team_id = T.team_id AND T.wins > ";
+    SQL += to_string(num_wins) + ";";
     nontransaction NA(*C);
-    result R(NA.exec(SQL.str()));
+    result R(NA.exec(SQL));
     cout << "FIRST_NAME LAST_NAME TEAM_NAME WINS\n";
     for (result::const_iterator c = R.begin(); c != R.end(); ++c)
     {
