@@ -1,6 +1,8 @@
 from sqlalchemy import create_engine, Column, Integer, String, Sequence
 from sqlalchemy.dialects.postgresql import DOUBLE_PRECISION
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
+import os
 
 Base = declarative_base()
 
@@ -53,3 +55,16 @@ Team.__table__.drop(engine, checkfirst=True)
 State.__table__.drop(engine, checkfirst=True)
 Color.__table__.drop(engine, checkfirst=True)
 Base.metadata.create_all(engine)
+
+DBsession = sessionmaker(bind=engine)
+session = DBsession()
+
+color_file = open("color.txt")
+color_lines = color_file.readlines()
+for line in color_lines:
+    line_list = line.split()
+    new_color = Color(name=line_list[1])
+    session.add(new_color)
+    session.commit()
+
+session.close()
