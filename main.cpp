@@ -174,7 +174,6 @@ int main(int argc, char *argv[])
     connection *C = new connection("dbname=ACC_BBALL user=postgres password=passw0rd hostaddr = 127.0.0.1 port = 5432");
     if (C->is_open())
     {
-      cout << "Opened database successfully: " << C->dbname() << endl;
       work Drop(*C);
       string dropCMD = "DROP TABLE IF EXISTS player, team, state, color CASCADE;";
       Drop.exec(dropCMD);
