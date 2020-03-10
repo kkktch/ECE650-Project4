@@ -71,7 +71,7 @@ def query4(session, team_state, team_color):
     print("FIRST_NAME LAST_NAME UNIFORM_NUM")
     for single_nm in nms:
         print(single_nm.first_name + " " +
-              single_nm.last_name + " " + single_nm.uniform_num)
+              single_nm.last_name + " " + str(single_nm.uniform_num))
 
 
 engine = create_engine(
