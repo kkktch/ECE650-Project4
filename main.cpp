@@ -11,49 +11,49 @@ using namespace pqxx;
 
 string CreatePlayer()
 {
-  std::string ans = "CREATE TABLE PLAYER (​"
-                    "PLAYER_ID   SERIAL PRIMARY KEY  NOT NULL,"
-                    "TEAM_ID     INT,"
-                    "UNIFORM_NUM INT,"
-                    "FIRST_NAME  VARCHAR(256),"
-                    "LAST_NAME   VARCHAR(256),"
-                    "MPG         INT,"
-                    "PPG         INT,"
-                    "RPG         INT,"
-                    "APG         INT,"
-                    "SPG         DOUBLE PRECISION,"
-                    "BPG         DOUBLE PRECISION,"
-                    "FOREIGN KEY (TEAM_ID) REFERENCES TEAM(TEAM_ID) ON DELETE SET NULL ON UPDATE CASCADE);";
+  string ans = "CREATE TABLE PLAYER (​"
+               "PLAYER_ID   SERIAL PRIMARY KEY  NOT NULL,"
+               "TEAM_ID     INT,"
+               "UNIFORM_NUM INT,"
+               "FIRST_NAME  VARCHAR(256),"
+               "LAST_NAME   VARCHAR(256),"
+               "MPG         INT,"
+               "PPG         INT,"
+               "RPG         INT,"
+               "APG         INT,"
+               "SPG         DOUBLE PRECISION,"
+               "BPG         DOUBLE PRECISION,"
+               "FOREIGN KEY (TEAM_ID) REFERENCES TEAM(TEAM_ID) ON DELETE SET NULL ON UPDATE CASCADE);";
   return ans;
 }
 
 string CreateTeam()
 {
-  std::string ans = "CREATE TABLE TEAM ("
-                    "TEAM_ID   SERIAL PRIMARY KEY  NOT NULL,"
-                    "NAME      VARCHAR(256),"
-                    "STATE_ID  INT,"
-                    "COLOR_ID  INT,"
-                    "WINS      INT,"
-                    "LOSSES    INT,"
-                    "FOREIGN KEY (STATE_ID) REFERENCES STATE(STATE_ID) ON DELETE SET NULL ON UPDATE CASCADE,"
-                    "FOREIGN KEY (COLOR_ID) REFERENCES COLOR(COLOR_ID) ON DELETE SET NULL ON UPDATE CASCADE);";
+  string ans = "CREATE TABLE TEAM ("
+               "TEAM_ID   SERIAL PRIMARY KEY  NOT NULL,"
+               "NAME      VARCHAR(256),"
+               "STATE_ID  INT,"
+               "COLOR_ID  INT,"
+               "WINS      INT,"
+               "LOSSES    INT,"
+               "FOREIGN KEY (STATE_ID) REFERENCES STATE(STATE_ID) ON DELETE SET NULL ON UPDATE CASCADE,"
+               "FOREIGN KEY (COLOR_ID) REFERENCES COLOR(COLOR_ID) ON DELETE SET NULL ON UPDATE CASCADE);";
   return ans;
 }
 
 string CreateState()
 {
-  std::string ans = "CREATE TABLE STATE ("
-                    "STATE_ID SERIAL PRIMARY KEY NOT NULL,"
-                    "NAME VARCHAR(256));";
+  string ans = "CREATE TABLE STATE ("
+               "STATE_ID SERIAL PRIMARY KEY NOT NULL,"
+               "NAME VARCHAR(256));";
   return ans;
 }
 
 string CreateColor()
 {
-  std::string ans = "CREATE TABLE COLOR ("
-                    "COLOR_ID SERIAL PRIMARY KEY NOT NULL,"
-                    "NAME VARCHAR(256));";
+  string ans = "CREATE TABLE COLOR ("
+               "COLOR_ID SERIAL PRIMARY KEY NOT NULL,"
+               "NAME VARCHAR(256));";
   return ans;
 }
 
@@ -70,9 +70,8 @@ void initColor(connection *C)
   read_file.open("color.txt", ios::binary);
   while (getline(read_file, content))
   {
-    stringstream ss(content);
-    ss >> id >> name;
-    add_color(C, name);
+    string[] contents = content.split(" ");
+    add_color(C, contents[1]);
   }
   read_file.close();
 }
