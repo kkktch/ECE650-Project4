@@ -61,7 +61,7 @@ def query3(session, team_name):
         Player.team_id == Team.team_id, Team.name == team_name).order_by(Player.ppg.desc())
     print("FIRST_NAME LAST_NAME")
     for single_player in p_names:
-        print(single_player.first_name, " ", single_player.last_name)
+        print(single_player.first_name + " " + single_player.last_name)
 
 
 engine = create_engine(
