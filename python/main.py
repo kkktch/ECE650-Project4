@@ -66,5 +66,15 @@ for line in color_lines:
     new_color = Color(name=line_list[1])
     session.add(new_color)
     session.commit()
+color_file.close()
+
+state_file = open("state.txt")
+state_lines = state_file.readlines()
+for line in state_lines:
+    line_list = line.split()
+    new_state = State(name=line_list[1])
+    session.add(new_state)
+    session.commit()
+state_file.close()
 
 session.close()
