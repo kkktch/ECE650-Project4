@@ -71,7 +71,7 @@ void query1(connection *C,
             {
                 SQL += " AND ";
             }
-            SQL += "(" + to_string(data[i]) + " <= " + to_string(max[i]) + " AND " + to_string(data[i]) + " >= " + to_string(min[i]) << ") ";
+            SQL += "(" + to_string(data[i]) + " <= " + to_string(max[i]) + " AND " + to_string(data[i]) + " >= " + to_string(min[i]) + ") ";
             first = true;
         }
     }
