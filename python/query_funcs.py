@@ -2,8 +2,8 @@ from sqlalchemy import create_engine, Column, Integer, String, Sequence, select
 from sqlalchemy.dialects.postgresql import DOUBLE_PRECISION
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
+from main import Team, Color, State, Player
 import os
-from main import *
 
 
 def query2(engine, team_color):
