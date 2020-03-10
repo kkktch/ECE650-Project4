@@ -13,10 +13,6 @@ void add_player(connection *C, int team_id, int jersey_num, string first_name, s
     SQL += W.quote(last_name) + ",";
     SQL += to_string(mpg) + "," + to_string(ppg) + "," + to_string(rpg) + "," + to_string(apg) + ",";
     SQL += to_string(spg) + "," + to_string(bpg) + ");";
-    // stringstream SQL;
-    // SQL << "INSERT INTO player (team_id, uniform_num, first_name, last_name, mpg, ppg, rpg, apg, spg, bpg) VALUES ( "
-    //     << team_id << ", " << jersey_num << ", " << W.quote(first_name) << ", " << W.quote(last_name) << ", " << mpg << ", " << ppg << ", " << rpg << ", " << apg << ", " << spg << ", " << bpg << ");";
-    // W.exec(SQL.str());
     W.exec(SQL);
     W.commit();
 }
@@ -24,9 +20,13 @@ void add_player(connection *C, int team_id, int jersey_num, string first_name, s
 void add_team(connection *C, string name, int state_id, int color_id, int wins, int losses)
 {
     work W(*C);
-    stringstream SQL;
-    SQL << "INSERT INTO team (name, state_id, color_id, wins, losses) VALUES ( " << W.quote(name) << ", " << state_id << ", " << color_id << ", " << wins << ", " << losses << ");";
-    W.exec(SQL.str());
+    string SQL = "INSERT INTO team (name, state_id, color_id, wins, losses) VALUES ( ";
+    SQL += W.quote(name) + ",";
+    SQL += to_string(state_id) + "," + to_string(color_id) + "," + to_string(wins) + "," + to_string(losses) + ");";
+    // stringstream SQL;
+    // SQL << "INSERT INTO team (name, state_id, color_id, wins, losses) VALUES ( " << W.quote(name) << ", " << state_id << ", " << color_id << ", " << wins << ", " << losses << ");";
+    // W.exec(SQL.str());
+    W.exec(SQL);
     W.commit();
 }
 
