@@ -64,6 +64,16 @@ def query3(session, team_name):
         print(single_player.first_name + " " + single_player.last_name)
 
 
+def query4(session, team_state, team_color):
+    nms = session.query(Player).filter(
+        Player.team_id == Team.team_id, Team.color_id == Color.color_id,
+        Team.state_id == State.state_id, State.name == team_state, Color.name == team_color)
+    print("FIRST_NAME LAST_NAME UNIFORM_NUM")
+    for single_nm in nms:
+        print(single_nm.first_name + " " +
+              single_nm.last_name + " " + single_nm.uniform_num)
+
+
 engine = create_engine(
     "postgresql://postgres:passw0rd@localhost:5432/ACC_BBALL")
 Player.__table__.drop(engine, checkfirst=True)
@@ -115,5 +125,7 @@ player_file.close()
 
 query2(session, "Red")
 query3(session, "GeorgiaTech")
+query4(session, "FL", "Gold")
+query4(session, "NC", "DarkBlue")
 
 session.close()
