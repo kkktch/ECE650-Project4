@@ -2,8 +2,8 @@ from sqlalchemy import create_engine, Column, Integer, String, Sequence, select
 from sqlalchemy.dialects.postgresql import DOUBLE_PRECISION
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
+from query_funcs import query2
 import os
-import query_funcs
 
 Base = declarative_base()
 
@@ -98,6 +98,6 @@ for line in player_lines:
     session.commit()
 player_file.close()
 
-query_funcs.query2(engine, "Red")
+query2(engine, "Red")
 
 session.close()
