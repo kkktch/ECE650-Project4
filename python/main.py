@@ -58,7 +58,7 @@ def query2(session, team_color):
 
 def query3(session, team_name):
     p_names = session.query(Player).filter(
-        Player.team_id == Team.team_id, Team.name == team_name).order_by(Player.ppg)
+        Player.team_id == Team.team_id, Team.name == team_name).order_by(Player.ppg.desc())
     print("FIRST_NAME LAST_NAME")
     for single_player in p_names:
         print(single_player.first_name, " ", single_player.last_name)
