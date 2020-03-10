@@ -97,7 +97,7 @@ for line in player_lines:
     session.commit()
 player_file.close()
 
-team_names = session.query(Team, Color).filter(
+team_names = session.query(Team).filter(
     Color.name == "Red", Team.color_id == Color.color_id)
 print("NAME\n")
 for single_name in team_names:
