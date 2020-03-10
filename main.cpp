@@ -70,7 +70,7 @@ void initColor(connection *C)
   read_file.open("color.txt", ios::binary);
   while (getline(read_file, content))
   {
-    string[] contents = content.split(" ");
+    string contents[2] = content.split(" ");
     add_color(C, contents[1]);
   }
   read_file.close();
