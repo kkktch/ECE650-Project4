@@ -91,8 +91,8 @@ player_file = open("player.txt")
 player_lines = player_file.readlines()
 for line in player_lines:
     line_list = line.split()
-    new_player = Player(name=line_list[1], team_id=int(line_list[2]), uniform_num=int(line_list[3]), first_name=line_list[4], last_name=line_list[5], mpg=int(
-        line_list[9]), ppg=int(line_list[10]), rpg=int(line_list[11]), apg=int(line_list[12]), spg=float(line_list[13]), bpg=float(line_list[14]))
+    new_player = Player(team_id=int(line_list[1]), uniform_num=int(line_list[2]), first_name=line_list[3], last_name=line_list[4], mpg=int(
+        line_list[5]), ppg=int(line_list[6]), rpg=int(line_list[7]), apg=int(line_list[8]), spg=float(line_list[9]), bpg=float(line_list[10]))
     session.add(new_player)
     session.commit()
 player_file.close()
