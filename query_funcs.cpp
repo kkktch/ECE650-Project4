@@ -103,7 +103,6 @@ void query2(connection *C, string team_color)
 
 void query3(connection *C, string team_name)
 {
-    stringstream SQL;
     string SQL = "SELECT P.first_name, P.last_name FROM player as P, team as T WHERE P.team_id = T.team_id AND T.name = '" SQL += team_name + "' ORDER BY P.ppg DESC;";
     nontransaction NA(*C);
     result R(NA.exec(SQL));
