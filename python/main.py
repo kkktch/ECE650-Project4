@@ -100,6 +100,8 @@ player_file.close()
 team_names = session.query(Team, Color).filter(
     Color.name == "Red", Team.color_id == Color.color_id).all()
 print("NAME\n")
-print(team_names.name)
+for single_name in team_names:
+    print(single_name.name, "\n")
+
 
 session.close()
