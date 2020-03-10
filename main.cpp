@@ -138,39 +138,10 @@ void initPlayer(connection *C)
   read_file.close();
 }
 
-void ReCreateDB()
-{
-  try
-  {
-    connection *temp = new connection("dbname=postgres user=postgres password=passw0rd hostaddr = 127.0.0.1 port = 5432");
-    if (temp->is_open())
-    {
-      pqxx::nontransaction W_t(*temp);
-      string recreate = "drop database if exists \"ACC_BBALL\";";
-      W_t.exec(recreate);
-      recreate = "create database \"ACC_BBALL\";";
-      W_t.exec(recreate);
-      W_t.commit();
-      temp->disconnect();
-    }
-    else
-    {
-      cerr << "Fail to connect to database\n";
-      return;
-    }
-  }
-  catch (const std::exception &e)
-  {
-    cerr << e.what() << std::endl;
-    return;
-  }
-}
-
 int main(int argc, char *argv[])
 {
   try
   {
-    ReCreateDB();
     connection *C = new connection("dbname=ACC_BBALL user=postgres password=passw0rd hostaddr = 127.0.0.1 port = 5432");
     if (C->is_open())
     {
