@@ -76,7 +76,7 @@ def query4(session, team_state, team_color):
 
 def query5(session, num_wins):
     win_p = session.query(Player, Team).filter(
-        Player.team_id == Team.team_id, Team.wins == num_wins)
+        Player.team_id == Team.team_id, Team.wins > num_wins)
     print("FIRST_NAME LAST_NAME TEAM_NAME WINS")
     for single_win in win_p:
         print(single_win[0].first_name + " " + single_win[0].last_name + " " +
