@@ -12,4 +12,6 @@ def query2(session, team_color):
     print("NAME")
     for single_name in team_names:
         print(single_name.name)
-    print("here~~~~~~~~~~~~~")
+
+
+print("here~~~~~~~~~~~~~")
