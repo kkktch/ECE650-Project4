@@ -8,14 +8,14 @@ class State(Base):
     __tablename__ = 'state'
 
     # emits SERIAL
-    state_id = Column(Integer, primary_key=True)
+    state_id = Column(Integer, autoincrement=True, primary_key=True)
     name = Column(String(256))
 
 
 class Color(Base):
     __tablename__ = 'color'
 
-    color_id = Column(Integer, primary_key=True)
+    color_id = Column(Integer, autoincrement=True, primary_key=True)
     name = Column(String(256))
 
 
