@@ -4,7 +4,7 @@ from sqlalchemy.ext.declarative import declarative_base
 Base = declarative_base()
 
 
-class T2(Base):
+class T1(Base):
     __tablename__ = 't2'
 
     # emits SERIAL
@@ -14,4 +14,5 @@ class T2(Base):
 
 engine = create_engine(
     "postgresql://postgres:passw0rd@localhost:5432/ACC_BBALL", echo=True)
+T1.__table__.drop(engine, checkfirst=True)
 Base.metadata.create_all(engine)
