@@ -6,7 +6,9 @@ import os
 from main import *
 
 
-def query2(session, team_color):
+def query2(engine, team_color):
+    DBsession = sessionmaker(bind=engine)
+    session = DBsession()
     team_names = session.query(Team).filter(
         Color.name == team_color, Team.color_id == Color.color_id)
     print("NAME")
