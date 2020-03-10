@@ -49,7 +49,7 @@ class Player(Base):
 
 
 engine = create_engine(
-    "postgresql://postgres:passw0rd@localhost:5432/ACC_BBALL", echo=True)
+    "postgresql://postgres:passw0rd@localhost:5432/ACC_BBALL")
 Player.__table__.drop(engine, checkfirst=True)
 Team.__table__.drop(engine, checkfirst=True)
 State.__table__.drop(engine, checkfirst=True)
