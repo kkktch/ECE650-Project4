@@ -56,6 +56,14 @@ def query2(session, team_color):
         print(single_name.name)
 
 
+def query3(session, team_name):
+    p_names = session.query(Player).filter(
+        Player.team_id == Team.team_id, Team.name == team_name).order_by(Player.ppg)
+    print("FIRST_NAME LAST_NAME")
+    for single_player in p_names:
+        print(single_player.first_name, " ", single_player.last_name)
+
+
 engine = create_engine(
     "postgresql://postgres:passw0rd@localhost:5432/ACC_BBALL")
 Player.__table__.drop(engine, checkfirst=True)
@@ -106,5 +114,6 @@ for line in player_lines:
 player_file.close()
 
 query2(session, "Red")
+query3(session, "GeorgiaTech")
 
 session.close()
