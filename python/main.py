@@ -90,7 +90,8 @@ for line in player_lines:
     add_player(session, line_list[1], line_list[2], line_list[3], line_list[4],
                line_list[5], line_list[6], line_list[7], line_list[8], line_list[9], line_list[10])
 player_file.close()
-session.close()
 
 print("this is main")
 exercise()
+
+session.close()
