@@ -92,6 +92,6 @@ for line in player_lines:
 player_file.close()
 
 print("this is main")
-exercise()
+exercise(session)
 
 session.close()
