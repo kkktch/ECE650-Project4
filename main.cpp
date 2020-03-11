@@ -144,7 +144,6 @@ void initPlayer(connection *C)
   while (getline(read_file, content))
   {
     vector<string> contents = split(content);
-    ss >> id >> team_id >> uniform_num >> first_name >> last_name >> mpg >> ppg >> rpg >> apg >> spg >> bpg;
     add_player(C, contents[1], contents[2], contents[3], contents[4], contents[5], contents[6], contents[7], contents[8], contents[9], contents[10]);
   }
   read_file.close();
