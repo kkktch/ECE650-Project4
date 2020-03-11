@@ -86,6 +86,7 @@ void initColor(connection *C)
   while (getline(read_file, content))
   {
     vector<string> contents = split(" ");
+    cout << contents[1] << endl;
     add_color(C, contents[1]);
   }
   read_file.close();
@@ -105,6 +106,7 @@ void initState(connection *C)
   while (getline(read_file, content))
   {
     vector<string> contents = split(" ");
+    cout << contents[1] << endl;
     add_state(C, contents[1]);
   }
   read_file.close();
@@ -168,7 +170,7 @@ int main(int argc, char *argv[])
       initPlayer(C);
       //Close database connection
       C->disconnect();
-      exercise(C);
+      //exercise(C);
     }
     else
     {
