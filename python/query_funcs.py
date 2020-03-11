@@ -71,6 +71,7 @@ def query1(session, use_mpg, min_mpg, max_mpg,
 def query2(session, team_color):
     from main import State, Team, Color, Player
     print("this query_funcs.py")
+    team_names = []
     team_names = session.query(Team).filter(
         Color.name == team_color, Team.color_id == Color.color_id)
     print("NAME")
