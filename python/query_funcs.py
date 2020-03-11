@@ -78,7 +78,7 @@ def query2(session, team_color):
     for single_name in team_names:
         print(single_name.name)
         print(i)
-        ++i
+        i = i + 1
     return
 
 
