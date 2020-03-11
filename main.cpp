@@ -86,10 +86,6 @@ void initColor(connection *C)
   while (getline(read_file, content))
   {
     vector<string> contents = split(content);
-    for (auto s : contents)
-    {
-      cout << s << endl;
-    }
     add_color(C, contents[1]);
   }
   read_file.close();
@@ -109,7 +105,6 @@ void initState(connection *C)
   while (getline(read_file, content))
   {
     vector<string> contents = split(content);
-    cout << contents[1] << endl;
     add_state(C, contents[1]);
   }
   read_file.close();
@@ -128,9 +123,8 @@ void initTeam(connection *C)
   read_file.open("team.txt", ios::binary);
   while (getline(read_file, content))
   {
-    stringstream ss(content);
-    ss >> id >> name >> state_id >> color_id >> wins >> losses;
-    add_team(C, name, state_id, color_id, wins, losses);
+    vector<string> contents = split(content);
+    add_team(C, contents[1], contents[2], contents[3], contents[4], contents[5]);
   }
   read_file.close();
 }
@@ -149,9 +143,9 @@ void initPlayer(connection *C)
   read_file.open("player.txt", ios::binary);
   while (getline(read_file, content))
   {
-    stringstream ss(content);
+    vector<string> contents = split(content);
     ss >> id >> team_id >> uniform_num >> first_name >> last_name >> mpg >> ppg >> rpg >> apg >> spg >> bpg;
-    add_player(C, team_id, uniform_num, first_name, last_name, mpg, ppg, rpg, apg, spg, bpg);
+    add_player(C, contents[1], contents[2], contents[3], contents[4], contents[5], contents[6], contents[7], contents[8], contents[9], contents[10]);
   }
   read_file.close();
 }
