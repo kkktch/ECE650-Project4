@@ -74,8 +74,11 @@ def query2(session, team_color):
     team_names = session.query(Team).filter(
         Color.name == team_color, Team.color_id == Color.color_id)
     print("NAME")
+    i = 0
     for single_name in team_names:
         print(single_name.name)
+        print(i)
+        ++i
     return
 
 
