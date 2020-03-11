@@ -112,7 +112,7 @@ void query3(connection *C, string team_name)
     cout << "FIRST_NAME LAST_NAME\n";
     for (auto c : R)
     {
-        string res = c[0].as<string>() + " " + c[1].as<string>;
+        string res = c[0].as<string>() + " " + c[1].as<string>();
         cout << res << endl;
     }
 }
