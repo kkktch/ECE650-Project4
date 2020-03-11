@@ -80,7 +80,7 @@ void initColor(connection *C)
   W.commit();
 
   int id;
-  string content, name;
+  string content;
   ifstream read_file;
   read_file.open("color.txt", ios::binary);
   while (getline(read_file, content))
@@ -99,7 +99,7 @@ void initState(connection *C)
   W.commit();
 
   int id;
-  string content, name;
+  string content;
   ifstream read_file;
   read_file.open("state.txt", ios::binary);
   while (getline(read_file, content))
@@ -117,14 +117,13 @@ void initTeam(connection *C)
   W.exec(sql);
   W.commit();
 
-  int id, state_id, color_id, wins, losses;
-  string content, name;
+  string content;
   ifstream read_file;
   read_file.open("team.txt", ios::binary);
   while (getline(read_file, content))
   {
     vector<string> contents = split(content);
-    add_team(C, contents[1], contents[2], contents[3], contents[4], contents[5]);
+    add_team(C, contents[1], stoi(contents[2]), stoi(contents[3]), stoi(contents[4]), stoi(contents[5]));
   }
   read_file.close();
 }
@@ -136,9 +135,7 @@ void initPlayer(connection *C)
   W.exec(sql);
   W.commit();
 
-  int id, team_id, uniform_num, mpg, ppg, rpg, apg;
-  double spg, bpg;
-  string content, first_name, last_name;
+  string content;
   ifstream read_file;
   read_file.open("player.txt", ios::binary);
   while (getline(read_file, content))
