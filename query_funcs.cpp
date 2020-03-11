@@ -82,7 +82,7 @@ void query1(connection *C,
     cout.flags(ios::fixed);
     cout.precision(1);
     cout << "PLAYER_ID TEAM_ID UNIFORM_NUM FIRST_NAME LAST_NAME MPG PPG RPG APG SPG BPG\n";
-    for (result::const_iterator c = R.begin(); c != R.end(); ++c)
+    for (auto c : R)
     {
         cout << c[0].as<int>() << " " << c[1].as<int>() << " " << c[2].as<int>() << " " << c[3].as<string>() << " " << c[4].as<string>() << " " << c[5].as<int>() << " " << c[6].as<int>() << " " << c[7].as<int>() << " " << c[8].as<int>() << " " << c[9].as<double>() << " " << c[10].as<double>() << endl;
     }
