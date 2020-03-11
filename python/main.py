@@ -92,4 +92,5 @@ for line in player_lines:
 player_file.close()
 session.close()
 
+print("this is main")
 exercise()
