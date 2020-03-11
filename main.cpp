@@ -85,7 +85,7 @@ void initColor(connection *C)
   read_file.open("color.txt", ios::binary);
   while (getline(read_file, content))
   {
-    vector<string> contents = split(" ");
+    vector<string> contents = split(content);
     for (auto s : contents)
     {
       cout << s << endl;
@@ -108,7 +108,7 @@ void initState(connection *C)
   read_file.open("state.txt", ios::binary);
   while (getline(read_file, content))
   {
-    vector<string> contents = split(" ");
+    vector<string> contents = split(content);
     cout << contents[1] << endl;
     add_state(C, contents[1]);
   }
