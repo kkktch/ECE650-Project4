@@ -24,7 +24,7 @@ def exercise():
     # query1(session, 1, 10, 38, 1, 0, 20, 1, 0, 5, 1, 0, 5, 1, 0, 5, 1, 0, 5)
     # query2(session, "Gold")
     query2(session, "Red")
-    # query2(session, "NoExist")
+    query2(session, "NoExist")
     # query3(session, "GeorgiaTech")
     # query3(session, "NoExist")
     # query4(session, "FL", "Gold")
