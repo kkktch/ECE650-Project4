@@ -6,7 +6,11 @@ from query_funcs import query1, query2, query3, query4, query5
 import os
 
 
-def exercise(session):
+def exercise():
+    engine = create_engine(
+        "postgresql://postgres:passw0rd@localhost:5432/ACC_BBALL")
+    DBsession = sessionmaker(bind=engine)
+    session = DBsession()
 
     print("this is exercise.py")
     # query1(session, 1, 10, 38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)

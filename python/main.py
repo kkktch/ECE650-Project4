@@ -50,48 +50,52 @@ class Player(Base):
     bpg = Column(DOUBLE_PRECISION)
 
 
-engine = create_engine(
-    "postgresql://postgres:passw0rd@localhost:5432/ACC_BBALL")
-Player.__table__.drop(engine, checkfirst=True)
-Team.__table__.drop(engine, checkfirst=True)
-State.__table__.drop(engine, checkfirst=True)
-Color.__table__.drop(engine, checkfirst=True)
-Base.metadata.create_all(engine)
+def main():
+    engine = create_engine(
+        "postgresql://postgres:passw0rd@localhost:5432/ACC_BBALL")
+    Player.__table__.drop(engine, checkfirst=True)
+    Team.__table__.drop(engine, checkfirst=True)
+    State.__table__.drop(engine, checkfirst=True)
+    Color.__table__.drop(engine, checkfirst=True)
+    Base.metadata.create_all(engine)
 
-DBsession = sessionmaker(bind=engine)
-session = DBsession()
+    DBsession = sessionmaker(bind=engine)
+    session = DBsession()
 
-color_file = open("color.txt")
-color_lines = color_file.readlines()
-for line in color_lines:
-    line_list = line.split()
-    add_color(session, line_list[1])
-color_file.close()
+    color_file = open("color.txt")
+    color_lines = color_file.readlines()
+    for line in color_lines:
+        line_list = line.split()
+        add_color(session, line_list[1])
+    color_file.close()
 
-state_file = open("state.txt")
-state_lines = state_file.readlines()
-for line in state_lines:
-    line_list = line.split()
-    add_state(session, line_list[1])
-state_file.close()
+    state_file = open("state.txt")
+    state_lines = state_file.readlines()
+    for line in state_lines:
+        line_list = line.split()
+        add_state(session, line_list[1])
+    state_file.close()
 
-team_file = open("team.txt")
-team_lines = team_file.readlines()
-for line in team_lines:
-    line_list = line.split()
-    add_team(session, line_list[1], line_list[2],
-             line_list[3], line_list[4], line_list[5])
-team_file.close()
+    team_file = open("team.txt")
+    team_lines = team_file.readlines()
+    for line in team_lines:
+        line_list = line.split()
+        add_team(session, line_list[1], line_list[2],
+                 line_list[3], line_list[4], line_list[5])
+    team_file.close()
 
-player_file = open("player.txt")
-player_lines = player_file.readlines()
-for line in player_lines:
-    line_list = line.split()
-    add_player(session, line_list[1], line_list[2], line_list[3], line_list[4],
-               line_list[5], line_list[6], line_list[7], line_list[8], line_list[9], line_list[10])
-player_file.close()
+    player_file = open("player.txt")
+    player_lines = player_file.readlines()
+    for line in player_lines:
+        line_list = line.split()
+        add_player(session, line_list[1], line_list[2], line_list[3], line_list[4],
+                   line_list[5], line_list[6], line_list[7], line_list[8], line_list[9], line_list[10])
+    player_file.close()
+    session.close()
 
-print("this is main")
-exercise(session)
+    print("this is main")
+    exercise()
 
-session.close()
+
+if __name__ == "__main__":
+    main()
