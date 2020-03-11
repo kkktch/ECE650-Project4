@@ -53,10 +53,10 @@ void query1(connection *C,
             int use_spg, double min_spg, double max_spg,
             int use_bpg, double min_bpg, double max_bpg)
 {
-    int use[6] = {use_mpg, use_ppg, use_rpg, use_apg, use_spg, use_bpg};
-    string data[6] = {"mpg", "ppg", "rpg", "apg", "spg", "bpg"};
-    double min[6] = {min_mpg, min_ppg, min_rpg, min_apg, min_spg, min_bpg};
-    double max[6] = {max_mpg, max_ppg, max_rpg, max_apg, max_spg, max_bpg};
+    vector<int> use = {use_mpg, use_ppg, use_rpg, use_apg, use_spg, use_bpg};
+    vector<string> data = {"mpg", "ppg", "rpg", "apg", "spg", "bpg"};
+    vector<double> min = {min_mpg, min_ppg, min_rpg, min_apg, min_spg, min_bpg};
+    vector<double> max = {max_mpg, max_ppg, max_rpg, max_apg, max_spg, max_bpg};
     string SQL = "SELECT * FROM player ";
     bool first = false;
     for (int i = 0; i < 6; i++)
