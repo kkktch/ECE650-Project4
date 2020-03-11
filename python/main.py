@@ -3,7 +3,7 @@ from sqlalchemy.dialects.postgresql import DOUBLE_PRECISION
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from query_funcs import add_color, add_player, add_state, add_team
-import query_funcs
+from exercise import exercise
 import os
 
 Base = declarative_base()
@@ -92,4 +92,4 @@ for line in player_lines:
 player_file.close()
 session.close()
 
-query_funcs.main()
+exercise()
