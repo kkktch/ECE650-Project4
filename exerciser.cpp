@@ -13,6 +13,7 @@ void exercise(connection *C)
     query1(C, 1, 10, 38, 1, 0, 20, 1, 0, 5, 1, 0, 5, 1, 0, 5, 1, 0, 5);
     query2(C, "Gold");
     query2(C, "Red");
+    query2(C, "Green");
     query2(C, "NoExist");
     query3(C, "GeorgiaTech");
     query3(C, "NoExist");
