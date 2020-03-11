@@ -86,7 +86,10 @@ void initColor(connection *C)
   while (getline(read_file, content))
   {
     vector<string> contents = split(" ");
-    cout << contents[1] << endl;
+    for (auto s : contents)
+    {
+      cout << s << endl;
+    }
     add_color(C, contents[1]);
   }
   read_file.close();
