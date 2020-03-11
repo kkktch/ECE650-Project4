@@ -85,7 +85,7 @@ void query1(connection *C,
     for (auto c : R)
     {
         string res_ = to_string(c[0].as<int>()) + " " + to_string(c[1].as<int>()) + " " + to_string(c[2].as<int>()) + " " + c[3].as<string>() + " " + c[4].as<string>() + " ";
-        cout << res << c[5].as<int>() << " " << c[6].as<int>() << " " << c[7].as<int>() << " " << c[8].as<int>() << " " << c[9].as<double>() << " " << c[10].as<double>() << endl;
+        cout << res_ << c[5].as<int>() << " " << c[6].as<int>() << " " << c[7].as<int>() << " " << c[8].as<int>() << " " << c[9].as<double>() << " " << c[10].as<double>() << endl;
     }
 }
 
