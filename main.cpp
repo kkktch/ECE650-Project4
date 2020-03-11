@@ -12,7 +12,7 @@ using namespace pqxx;
 
 vector<string> split(string input)
 {
-  vector<string> ans = new vector();
+  vector<string> ans;
   string str = input;
   while (str.find(" ") != string::npos)
   {
