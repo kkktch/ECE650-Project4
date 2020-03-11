@@ -93,7 +93,6 @@ def main():
     player_file.close()
     session.close()
 
-    print("this is main")
     exercise()
 
 
