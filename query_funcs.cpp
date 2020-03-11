@@ -95,7 +95,7 @@ void query2(connection *C, string team_color)
     nontransaction NA(*C);
     result R(NA.exec(SQL));
     cout << "NAME\n";
-    for (result::const_iterator c = R.begin(); c != R.end(); ++c)
+    for (auto c : R)
     {
         cout << c[0].as<string>() << endl;
     }
@@ -108,7 +108,7 @@ void query3(connection *C, string team_name)
     nontransaction NA(*C);
     result R(NA.exec(SQL));
     cout << "FIRST_NAME LAST_NAME\n";
-    for (result::const_iterator c = R.begin(); c != R.end(); ++c)
+    for (auto c : R)
     {
         cout << c[0].as<string>() << " " << c[1].as<string>() << endl;
     }
@@ -122,7 +122,7 @@ void query4(connection *C, string team_state, string team_color)
     nontransaction NA(*C);
     result R(NA.exec(SQL));
     cout << "FIRST_NAME LAST_NAME UNIFORM_NUM\n";
-    for (result::const_iterator c = R.begin(); c != R.end(); ++c)
+    for (auto c : R)
     {
         cout << c[0].as<string>() << " " << c[1].as<string>() << " " << c[2].as<int>() << endl;
     }
@@ -135,7 +135,7 @@ void query5(connection *C, int num_wins)
     nontransaction NA(*C);
     result R(NA.exec(SQL));
     cout << "FIRST_NAME LAST_NAME TEAM_NAME WINS\n";
-    for (result::const_iterator c = R.begin(); c != R.end(); ++c)
+    for (auto c : R)
     {
         cout << c[0].as<string>() << " " << c[1].as<string>() << " " << c[2].as<string>() << " " << c[3].as<int>() << endl;
     }
