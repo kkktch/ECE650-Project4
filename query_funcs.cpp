@@ -84,7 +84,8 @@ void query1(connection *C,
     cout << "PLAYER_ID TEAM_ID UNIFORM_NUM FIRST_NAME LAST_NAME MPG PPG RPG APG SPG BPG\n";
     for (auto c : R)
     {
-        cout << c[0].as<int>() << " " << c[1].as<int>() << " " << c[2].as<int>() << " " << c[3].as<string>() << " " << c[4].as<string>() << " " << c[5].as<int>() << " " << c[6].as<int>() << " " << c[7].as<int>() << " " << c[8].as<int>() << " " << c[9].as<double>() << " " << c[10].as<double>() << endl;
+        string res_ = to_string(c[0].as<int>()) + " " + to_string(c[1].as<int>()) + " " + to_string(c[2].as<int>()) + " " + c[3].as<string>() + " " + c[4].as<string>() + " ";
+        cout << res << c[5].as<int>() << " " << c[6].as<int>() << " " << c[7].as<int>() << " " << c[8].as<int>() << " " << c[9].as<double>() << " " << c[10].as<double>() << endl;
     }
 }
 
@@ -97,7 +98,8 @@ void query2(connection *C, string team_color)
     cout << "NAME\n";
     for (auto c : R)
     {
-        cout << c[0].as<string>() << endl;
+        string res = c[0].as<string>();
+        cout << res << endl;
     }
 }
 
@@ -110,7 +112,8 @@ void query3(connection *C, string team_name)
     cout << "FIRST_NAME LAST_NAME\n";
     for (auto c : R)
     {
-        cout << c[0].as<string>() << " " << c[1].as<string>() << endl;
+        string res = c[0].as<string>() + " " + c[1].as<string>;
+        cout << res << endl;
     }
 }
 
@@ -124,7 +127,8 @@ void query4(connection *C, string team_state, string team_color)
     cout << "FIRST_NAME LAST_NAME UNIFORM_NUM\n";
     for (auto c : R)
     {
-        cout << c[0].as<string>() << " " << c[1].as<string>() << " " << c[2].as<int>() << endl;
+        string res = c[0].as<string>() + " " + c[1].as<string>() + " " + to_string(c[2].as<int>());
+        cout << res << endl;
     }
 }
 
@@ -137,6 +141,7 @@ void query5(connection *C, int num_wins)
     cout << "FIRST_NAME LAST_NAME TEAM_NAME WINS\n";
     for (auto c : R)
     {
-        cout << c[0].as<string>() << " " << c[1].as<string>() << " " << c[2].as<string>() << " " << c[3].as<int>() << endl;
+        string res = c[0].as<string>() + " " + c[1].as<string>() + " " + c[2].as<string>() + " " + to_string(c[3].as<int>());
+        cout << res << endl;
     }
 }
