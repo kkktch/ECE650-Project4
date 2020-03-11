@@ -31,3 +31,4 @@ def exercise():
     query5(session, 12)
     query5(session, 10)
     query5(session, 50)
+    return

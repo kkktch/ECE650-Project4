@@ -12,6 +12,7 @@ def add_player(session, team_id_in, jersey_num, first_name_in, last_name_in,
         mpg_in), ppg=int(ppg_in), rpg=int(rpg_in), apg=int(apg_in), spg=float(spg_in), bpg=float(bpg_in))
     session.add(new_player)
     session.commit()
+    return
 
 
 def add_team(session, name_in, state_id_in, color_id_in, wins_in, losses_in):
@@ -20,6 +21,7 @@ def add_team(session, name_in, state_id_in, color_id_in, wins_in, losses_in):
                     color_id=int(color_id_in), wins=int(wins_in), losses=int(losses_in))
     session.add(new_team)
     session.commit()
+    return
 
 
 def add_color(session, name_in):
@@ -27,6 +29,7 @@ def add_color(session, name_in):
     new_color = Color(name=name_in)
     session.add(new_color)
     session.commit()
+    return
 
 
 def add_state(session, name_in):
@@ -34,6 +37,7 @@ def add_state(session, name_in):
     new_state = State(name=name_in)
     session.add(new_state)
     session.commit()
+    return
 
 
 def query1(session, use_mpg, min_mpg, max_mpg,
@@ -61,6 +65,7 @@ def query1(session, use_mpg, min_mpg, max_mpg,
     for single_player in tmp:
         print(str(single_player.player_id) + " " + str(single_player.team_id) + " " + str(single_player.uniform_num) + " " + single_player.first_name + " " + single_player.last_name + " " +
               str(single_player.mpg) + " " + str(single_player.ppg) + " " + str(single_player.rpg) + " " + str(single_player.apg) + " " + str('%.1f' % single_player.spg) + " " + str('%.1f' % single_player.bpg))
+    return
 
 
 def query2(session, team_color):
@@ -70,6 +75,7 @@ def query2(session, team_color):
     print("NAME")
     for single_name in team_names:
         print(single_name.name)
+    return
 
 
 def query3(session, team_name):
@@ -79,6 +85,7 @@ def query3(session, team_name):
     print("FIRST_NAME LAST_NAME")
     for single_player in p_names:
         print(single_player.first_name + " " + single_player.last_name)
+    return
 
 
 def query4(session, team_state, team_color):
@@ -90,6 +97,7 @@ def query4(session, team_state, team_color):
     for single_nm in nms:
         print(single_nm.first_name + " " +
               single_nm.last_name + " " + str(single_nm.uniform_num))
+    return
 
 
 def query5(session, num_wins):
@@ -100,3 +108,4 @@ def query5(session, num_wins):
     for single_win in win_p:
         print(single_win[0].first_name + " " + single_win[0].last_name + " " +
               single_win[1].name + " " + str(single_win[1].wins))
+    return
