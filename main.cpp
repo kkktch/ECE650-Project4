@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <vector>
 #include <pqxx/pqxx>
 
 #include "query_funcs.h"
@@ -8,6 +9,20 @@
 
 using namespace std;
 using namespace pqxx;
+
+vector<string> split(string input)
+{
+  vector<string> ans = new vector();
+  string str = input;
+  while (str.find(" ") != string::npos)
+  {
+    int found = str.find(" ");
+    ans.push_back(str.substr(0, found));
+    str = str.substr(found + 1);
+  }
+  ans.push_back(str);
+  return ans;
+}
 
 string CreatePlayer()
 {
@@ -70,7 +85,7 @@ void initColor(connection *C)
   read_file.open("color.txt", ios::binary);
   while (getline(read_file, content))
   {
-    string contents[2] = content.split(" ");
+    vector<string> contents = split(" ");
     add_color(C, contents[1]);
   }
   read_file.close();
@@ -89,9 +104,8 @@ void initState(connection *C)
   read_file.open("state.txt", ios::binary);
   while (getline(read_file, content))
   {
-    stringstream ss(content);
-    ss >> id >> name;
-    add_state(C, name);
+    vector<string> contents = split(" ");
+    add_state(C, contents[1]);
   }
   read_file.close();
 }
