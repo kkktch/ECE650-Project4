@@ -12,6 +12,7 @@ def exercise():
     DBsession = sessionmaker(bind=engine)
     session = DBsession()
 
+    print("this is exercise.py")
     # query1(session, 1, 10, 38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
     # query1(session, 0, 10, 38, 1, 0, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
     # query1(session, 0, 10, 38, 0, 0, 20, 1, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0)
