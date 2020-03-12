@@ -10,6 +10,7 @@ void add_player(connection *C, int team_id, int jersey_num, string first_name, s
     SQL += to_string(team_id) + ",";
     SQL += to_string(jersey_num) + ",";
     SQL += W.quote(first_name) + ",";
+    cout << W.quote(first_name);
     SQL += W.quote(last_name) + ",";
     SQL += to_string(mpg) + "," + to_string(ppg) + "," + to_string(rpg) + "," + to_string(apg) + ",";
     SQL += to_string(spg) + "," + to_string(bpg) + ");";
@@ -22,7 +23,6 @@ void add_team(connection *C, string name, int state_id, int color_id, int wins, 
     work W(*C);
     string SQL = "INSERT INTO team (name, state_id, color_id, wins, losses) VALUES ( ";
     SQL += W.quote(name) + ",";
-    cout << W.quote(name);
     SQL += to_string(state_id) + "," + to_string(color_id) + "," + to_string(wins) + "," + to_string(losses) + ");";
     W.exec(SQL);
     W.commit();
