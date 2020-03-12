@@ -10,7 +10,7 @@ void add_player(connection *C, int team_id, int jersey_num, string first_name, s
     SQL += to_string(team_id) + ",";
     SQL += to_string(jersey_num) + ",";
     SQL += W.quote(first_name) + ",";
-    cout << W.quote(first_name);
+    cout << W.quote(first_name) << endl;
     SQL += W.quote(last_name) + ",";
     SQL += to_string(mpg) + "," + to_string(ppg) + "," + to_string(rpg) + "," + to_string(apg) + ",";
     SQL += to_string(spg) + "," + to_string(bpg) + ");";
