@@ -163,7 +163,7 @@ int main(int argc, char *argv[])
       initPlayer(C);
       //Close database connection
       C->disconnect();
-      exercise(C);
+      //exercise(C);
     }
     else
     {
