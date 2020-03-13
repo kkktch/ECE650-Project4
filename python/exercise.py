@@ -12,6 +12,9 @@ def exercise():
     DBsession = sessionmaker(bind=engine)
     session = DBsession()
 
+    add_state(session, "test_state")
+    add_color(session, "test_color")
+    add_team(session, "test_team", 0, 0, 0, 0)
     query1(session, 1, 10, 38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
     query1(session, 0, 10, 38, 1, 0, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
     query1(session, 0, 10, 38, 0, 0, 20, 1, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0)
@@ -19,6 +22,8 @@ def exercise():
     query1(session, 0, 10, 38, 0, 0, 20, 0, 0, 5, 0, 0, 5, 1, 0, 5, 0, 0, 0)
     query1(session, 0, 10, 38, 0, 0, 20, 0, 0, 5, 0, 0, 5, 0, 0, 5, 1, 0, 5)
     query1(session, 0, 10, 38, 1, 0, 20, 0, 0, 5, 0, 0, 5, 0, 0, 5, 1, 0, 5)
+    query1(session, 0, 10, 38, 0, 0, 20, 1, 0, 5, 0, 0, 5, 1, 0, 5, 1, 0, 5)
+    add_player(session, 1, 1, "first_test", "last_test", 0, 0, 0, 0, 0, 3)
     query1(session, 0, 10, 38, 0, 0, 20, 1, 0, 5, 0, 0, 5, 1, 0, 5, 1, 0, 5)
     query1(session, 1, 10, 38, 1, 0, 20, 1, 0, 5, 1, 0, 5, 1, 0, 5, 1, 0, 5)
     query2(session, "Gold")
