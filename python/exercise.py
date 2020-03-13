@@ -2,7 +2,7 @@ from sqlalchemy import create_engine, Column, Integer, String, Sequence, select
 from sqlalchemy.dialects.postgresql import DOUBLE_PRECISION
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-from query_funcs import query1, query2, query3, query4, query5
+from query_funcs import query1, query2, query3, query4, query5, add_color, add_player, add_state, add_team
 import os
 
 

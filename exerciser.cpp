@@ -4,7 +4,7 @@ void exercise(connection *C)
 {
     add_state(C, "test_state");
     add_color(C, "test_color");
-    add_team(C, "test_team", 0, 0, 0, 0);
+    add_team(C, "test_team", 1, 1, 0, 0);
     query1(C, 1, 10, 38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
     query1(C, 0, 10, 38, 1, 0, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
     query1(C, 0, 10, 38, 0, 0, 20, 1, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0);
